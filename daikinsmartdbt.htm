@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>テストページ</title>
+</head>
+<body>
+ Working with server: Apache Tomcat/7.0.27<br>
+Servlet Specification: 3.0<br>
+JSP version: 2.1<br>
+
+	URLデコード【/test/decord】<br>
+	<form method="get" action="/test/decord" target="iframe_t2">
+		text = <input name="text" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe_t2" height="60" width="640"></iframe>
+	<br><br>
+
+	ID発行要求・応答【/common/add_account】<br>
+	<form method="get" action="/common/add_account" target="iframe2">
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe2" height="60" width="640"></iframe>
+	<br><br>
+
+	ポート番号割当て要求・応答【/common/port_assign】<br>
+	<form method="get" action="/common/port_assign" target="iframe3">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe3" height="60" width="640"></iframe>
+	<br><br>
+
+	機器情報消去要求・応答【/common/erase_device】<br>
+	<form method="get" action="/common/erase_device" target="iframe4">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe4" height="60" width="640"></iframe>
+	<br><br>
+
+	機器一覧取得要求・応答【/common/device_list】<br>
+	<form method="get" action="/common/device_list" target="iframe7">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		demoreg = <input name="demoreg" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe7" height="60" width="640"></iframe>
+	<br><br>
+
+	一時キー発行要求・応答【/common/create_onetime_key】<br>
+	<form method="get" action="/common/create_onetime_key" target="iframe1">
+		id = <input name="id" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe1" height="60" width="640"></iframe>
+	<br><br>
+
+	パスワード算出【/test/pc】<br>
+	<form method="get" action="/test/pc" target="iframe_t1">
+		apw = <input name="apw" type="text"><br>
+		key = <input name="key" type="text"><br>
+		solt= <input name="solt" value="Daikin" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe_t1" height="60" width="640"></iframe>
+	<br><br>
+
+	エアコンデータ通知・応答【/aircon/notice】<br>
+	<form method="post" action="/aircon/notice" target="iframe8">
+		id = <input name="id" type="text"><br>
+		apw = <input name="apw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		temp_key = <input name="temp_key" type="text"><br>
+		type = <input name="type" type="text"><br>
+		ver = <input name="ver" type="text"><br>
+		location = <input name="location" type="text"><br>
+		name = <input name="name" type="text"><br>
+		icon = <input name="icon" type="text"><br>
+		method = <input name="method" type="text"><br>
+		notice_ip_int = <input name="notice_ip_int" type="text"><br>
+		notice_sync_int = <input name="notice_sync_int" type="text"><br>
+		model = <input name="model" type="text"><br>
+		status = <input name="status" type="text"><br>
+		tinfo = <input name="tinfo" type="text"><br>
+		price = <input name="price" type="text"><br>
+		target = <input name="target" type="text"><br>
+		pinfo = <input name="pinfo" type="text"><br>
+		sensor_info = <input name="sensor_info" type="text"><br>
+		week_power = <input name="week_power" type="text"><br>
+		year_power = <input name="year_power" type="text"><br>
+ 		reg = <input name="reg" type="text"><br>
+ 		notify = <input name="notify" type="text"><br>
+ 		ope_flg= <input name="ope_flg" type="text"><br>
+ 		led= <input name="led" type="text"><br>
+ 		pushinfo= <input name="pushinfo" type="text"><br>
+		adp_kind= <input name="adp_kind" type="text"><br>
+		en_setreg= <input name="en_setreg" type="text"><br>
+		scdl_timer= <input name="scdl_timer" type="text"><br>
+
+ 	<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe8" height="60" width="640"></iframe>
+	<br><br>
+
+	基本情報取得要求・応答【/common/basic_info】<br>
+	<form method="get" action="/common/basic_info" target="iframe9">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe9" height="60" width="640"></iframe>
+	<br><br>
+
+	設置場所設定要求・応答【/common/set_location】<br>
+	<form method="get" action="/common/set_location" target="iframe10">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		location = <input name="location" value="abcd" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe10" height="60" width="640"></iframe>
+	<br><br>
+
+	機器名称設定要求・応答【/common/set_name】<br>
+	<form method="get" action="/common/set_name" target="iframe11">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		name = <input name="name" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe11" height="60" width="640"></iframe>
+	<br><br>
+
+	アイコン設定要求・応答【/common/set_icon】<br>
+	<form method="get" action="/common/set_icon" target="iframe12">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		icon = <input name="icon" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe12" height="60" width="640"></iframe>
+	<br><br>
+
+	外部アクセス方式取得要求・応答【/common/get_remote_method】<br>
+	<form method="get" action="/common/get_remote_method" target="iframe13">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe13" height="60" width="640"></iframe>
+	<br><br>
+
+	外部アクセス方式設定要求・応答【/common/set_remote_method】<br>
+	<form method="get" action="/common/set_remote_method" target="iframe14">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		method = <input name="method" type="text"><br>
+		notice_ip_int = <input name="notice_ip_int" type="text"><br>
+		notice_sync_int = <input name="notice_sync_int" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe14" height="60" width="640"></iframe>
+	<br><br>
+
+	エアコン機種情報 取得要求・応答【/aircon/get_model_info】<br>
+	<form method="get" action="/aircon/get_model_info" target="iframe15">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe15" height="60" width="640"></iframe>
+	<br><br>
+
+	エアコン運転情報 取得要求・応答【/aircon/get_control_info】<br>
+	<form method="get" action="/aircon/get_control_info" target="iframe16">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe16" height="60" width="640"></iframe>
+	<br><br>
+
+	エアコン運転情報 設定要求・応答【/aircon/set_control_info】<br>
+	<form method="get" action="/aircon/set_control_info" target="iframe17">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		pow = <input name="pow" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe17" height="60" width="640"></iframe>
+	<br><br>
+
+	エアコンセンサー情報 取得要求・応答【/aircon/get_sensor_info】<br>
+	<form method="get" action="/aircon/get_sensor_info" target="iframe18">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe18" height="60" width="640"></iframe>
+	<br><br>
+
+	タイマ情報 取得要求・応答【/aircon/get_timer】<br>
+	<form method="get" action="/aircon/get_timer" target="iframe19">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe19" height="60" width="640"></iframe>
+	<br><br>
+
+	タイマ情報 設定要求・応答【/aircon/set_timer】<br>
+	<form method="get" action="/aircon/set_timer" target="iframe20">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		pow = <input name="pow" type="text"><br>
+		mode = <input name="mode" type="text"><br>
+		stemp = <input name="stemp" type="text"><br>
+		shum = <input name="shum" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe20" height="60" width="640"></iframe>
+	<br><br>
+
+	電気代単価 取得要求・応答【/aircon/get_price】<br>
+	<form method="get" action="/aircon/get_price" target="iframe21">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe21" height="60" width="640"></iframe>
+	<br><br>
+
+	電気代単価 設定要求・応答【/aircon/set_price】<br>
+		<form method="get" action="/aircon/set_price" target="iframe22">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		price = <input name="price" type="text"><br>
+		p = <input name="p" value="20" type="text"><br>
+		q = <input name="q" value="10" type="text"><br>
+		r = <input name="r" value="50" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe22" height="60" width="640"></iframe>
+	<br><br>
+
+	目標電気代 取得要求・応答【/aircon/get_target】<br>
+	<form method="get" action="/aircon/get_target" target="iframe23">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe23" height="60" width="640"></iframe>
+	<br><br>
+
+	目標電気代 設定要求・応答【/aircon/set_target】<br>
+	<form method="get" action="/aircon/set_target" target="iframe24">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		target = <input name="target" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe24" height="60" width="640"></iframe>
+	<br><br>
+
+	消費電力量(一週間) 取得要求・応答【/aircon/get_week_power】<br>
+	<form method="get" action="/aircon/get_week_power" target="iframe25">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe25" height="60" width="640"></iframe>
+	<br><br>
+
+	消費電力量(年間) 取得要求・応答【/aircon/get_year_power】<br>
+	<form method="get" action="/aircon/get_year_power" target="iframe26">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe26" height="60" width="640"></iframe>
+	<br><br>
+
+	設定温度プログラム情報 取得要求【/aircon/get_program】<br>
+	<form method="get" action="/aircon/get_program" target="iframe27">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe27" height="60" width="640"></iframe>
+	<br><br>
+
+	設定温度プログラム情報 設定要求【/aircon/set_program】<br>
+	<form method="get" action="/aircon/set_program" target="iframe28">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		program = <input name="program" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe28" height="60" width="640"></iframe>
+	<br><br>
+
+	スマホ用パスワード変更要求【/common/change_password】<br>
+	<form method="get" action="/common/change_password" target="iframe29">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		new_pw = <input name="new_pw" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe29" height="60" width="640"></iframe>
+	<br><br>
+
+	スマホ用パスワード取得要求・応答【/common/get_spw】<br>
+	<form method="get" action="/common/get_spw" target="iframe30">
+		id = <input name="id" type="text"><br>
+		apw = <input name="apw" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe30" height="60" width="640"></iframe>
+	<br><br>
+
+	ファームウェアバージョン取得要求・応答【/common/get_software_version】<br>
+	<form method="get" action="/common/get_software_version" target="iframe31">
+		type = <input name="type" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe31" height="60" width="640"></iframe>
+	<br><br>
+
+	ファームウェア情報要求・応答【/common/get_software_info】<br>
+	<form method="get" action="/common/get_software_info" target="iframe32">
+		type = <input name="type" type="text"><br>
+		ver = <input name="ver" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe32" height="60" width="640"></iframe>
+	<br><br>
+
+	現在時刻取得要求【/common/get_date】<br>
+		<form method="get" action="/common/get_date" target="iframe33">
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe33" height="60" width="640"></iframe>
+	<br><br>
+
+	エアコン自動停止情報 取得要求【/common/get_notify】<br>
+	<form method="get" action="/common/get_notify" target="iframe34">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe34" height="60" width="640"></iframe>
+	<br><br>
+
+	エアコン自動停止情報 設定要求【/common/set_notify】<br>
+	<form method="get" action="/common/set_notify" target="iframe35">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		teminalid = <input name="terminalid" type="text"><br>
+		notify = <input name="notify" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe35" height="60" width="640"></iframe>
+	<br><br>
+
+	デバイストークン設定要求・応答【/common/set_device_token】<br>
+	<form method="get" action="/common/set_device_token" target="iframe36">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		old_device_token = <input name="old_device_token" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe36" height="60" width="640"></iframe>
+	<br><br>
+
+	機器お知らせ通知設定要求・応答【/common/set_push_notice】<br>
+	<form method="get" action="/common/set_push_notice" target="iframe37">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		on_flg = <input name="on_flg" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe37" height="60" width="640"></iframe>
+	<br><br>
+
+	機器お知らせ通知設定情報取得要求・応答【/common/get_push_notice】<br>
+	<form method="get" action="/common/get_push_notice" target="iframe38">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe38" height="60" width="640"></iframe>
+	<br><br>
+
+	機器お知らせ有無取得要求・応答【/common/get_message_exist】<br>
+	<form method="get" action="/common/get_message_exist" target="iframe39">
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe39" height="60" width="640"></iframe>
+	<br><br>
+
+	機器お知らせ情報取得要求・応答【/common/get_message】<br>
+	<form method="get" action="/common/get_message" target="iframe40">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe40" height="60" width="640"></iframe>
+	<br><br>
+
+	機器お知らせ通知既読設定要求・応答【/common/set_message_read】<br>
+	<form method="get" action="/common/set_message_read" target="iframe41">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		msg_no<input name="msg_no" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe41" height="60" width="640"></iframe>
+	<br><br>
+
+	トークン削除要求・応答【/common/delete_device_token】<br>
+	<form method="get" action="/common/delete_device_token" target="iframe42">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		device = <input name="device" type="text"><br>
+		device_token = <input name="device_token" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe42" height="60" width="640"></iframe>
+	<br><br>
+
+	輝度情報設定要求・応答【/common/set_led】<br>
+	<form method="get" action="/common/set_led" target="iframe43">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		terminalid <input name="terminalid" type="text"><br>
+		led = <input name="led" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe43" height="60" width="640"></iframe>
+	<br><br>
+
+	スケジュールタイマ情報設定要求・応答【/aircon/set_scdltimer】<br>
+	<form method="get" action="/aircon/set_scdltimer" target="iframe44">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		terminalid <input name="terminalid" type="text"><br>
+		scdltimer = <input name="scdltimer" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe44" height="60" width="640"></iframe>
+	<br><br>
+
+	スケジュールタイマ情報取得要求・応答【/aircon/get_scdltimer】<br>
+	<form method="get" action="/aircon/get_scdltimer" target="iframe45">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe45" height="60" width="640"></iframe>
+	<br><br>
+
+	リージョンコード設定要求・応答【/common/set_regioncode】<br>
+	<form method="get" action="/common/set_regioncode" target="iframe46">
+		id = <input name="id" type="text"><br>
+		spw = <input name="spw" type="text"><br>
+		port = <input name="port" type="text"><br>
+		terminalid <input name="terminalid" type="text"><br>
+		reg = <input name="reg" type="text"><br>
+		<input value="送信" type="submit"><br><br>
+	</form>
+	<iframe name="iframe46" height="60" width="640"></iframe>
+	<br><br>
+
+
+
+</body></html>
