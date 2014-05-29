@@ -1,27 +1,63 @@
 daikin-control
 ==============
 
-The '''Daikin Emura FTXG-L''' comes with a wifi module preinstalled and rest API (without documentation) to control it.
+The '''Daikin Emura FTXG-L''' air conditioner comes with a wifi module preinstalled and rest API (without documentation) to control it.
 The only solution provided by Daikin to exploit these APIs is a mobile app (very well designed). 
 
 There is no possibility to control the unit from a browser and the only way to remote control the conditioner involves Daikin server and polling requests.
 
 This project aims to provide 2 main things:
 
-- unoffcial documentation of Daikin API needed to control the air conditioner
-- web interface to manage air conditioner settings
+- **unoffcial documentation** of Daikin API needed to control the air conditioner
+- **web interface** to manage air conditioner settings
+
+>Throughout this document is to be considered valid for the Daikin Emura FTXG-L with software version 1.4.3
 
 ##API System
+
+Daikin original API use REST
+
+You can use GET http request to retrive informations and POST http request to apply new settings.
+
+Uri | GET | POST | desc
+----|-----|------|-----
+
+ 
 
 
 
 ##Control Parameters
 
-###fan rate
+###Power
+param name :  **pow**
 
-param name : f_rate
+description: represents the power state of the device
 
-description:
+value | desc
+:----:|-----
+  0   | OFF
+  1   | ON
+
+###Mode
+
+param name :  **mode**
+
+description: represents the operating mode
+
+value | desc
+:----:|-----
+  1   | AUTO
+  2   | DEHUMDIFICATOR
+  3   | COLD
+  4   | HOT
+  6   | FAN
+
+
+###Fan rate
+
+param name : **f_rate**
+
+description: represents the fan mode
 
 value | desc
 :----:|-----
@@ -34,28 +70,17 @@ B     | silence
 7     | lvl_5
 
 
-###mode
+##Unsupported settings
+This list show which functionality are not supported in API
 
-param name :  mode
-
-description:
-
-value | desc
-:----:|-----
-  1   | AUTO
-  2   | DEHUMDIFICATOR
-  3   | COLD
-  4   | HOT
-  6   | FAN
-
-
+- led brightness switch
+ 
 ##Control Info Examples
 
-SPENTO
+Switched Off
 ```
 ret=OK,pow=0,mode=7,adv=,stemp=24.0,shum=0,dt1=24.0,dt2=M,dt3=25.0,dt4=25.0,dt5=25.0,dt7=24.0,dh1=0,dh2=50,dh3=0,dh4=0,dh5=0,dh7=0,dhh=50,b_mode=7,b_stemp=24.0,b_shum=0,alert=255,f_rate=4,f_dir=0,b_f_rate=4,b_f_dir=0,dfr1=4,dfr2=5,dfr3=7,dfr4=5,dfr5=5,dfr6=5,dfr7=4,dfrh=5,dfd1=0,dfd2=0,dfd3=3,dfd4=0,dfd5=0,dfd6=0,dfd7=0,dfdh=0
 ```
-
 AUTO 25C ( CONFORT AIR ) ( INTELLIGENT EYE )
 ```
 ret=OK,pow=1,mode=7,adv=,stemp=25.0,shum=0,dt1=25.0,dt2=M,dt3=22.0,dt4=25.0,dt5=25.0,dt7=25.0,dh1=0,dh2=50,dh3=0,dh4=0,dh5=0,dh7=0,dhh=50,b_mode=7,b_stemp=25.0,b_shum=0,alert=255,f_rate=A,f_dir=0,b_f_rate=4,b_f_dir=0,dfr1=4,dfr2=5,dfr3=4,dfr4=5,dfr5=5,dfr6=5,dfr7=4,dfrh=5,dfd1=0,dfd2=0,dfd3=0,dfd4=0,dfd5=0,dfd6=0,dfd7=0,dfdh=0
