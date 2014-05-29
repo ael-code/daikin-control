@@ -20,26 +20,33 @@ This project aims to provide 2 main things:
 ###fan rate
 
 param name : f_rate
+
 description:
-- A auto
-- B silence
-- 3 lvl_1
-- 4 lvl_2
-- 5 lvl_3
-- 6 lvl_4
-- 7 lvl_5
+
+value | desc
+:----:|-----
+A     | auto
+B     | silence
+3     | lvl_1
+4     | lvl_2
+5     | lvl_3
+6     | lvl_4
+7     | lvl_5
 
 
 ###mode
 
 param name :  mode
+
 description:
 
-- 1 AUTO
-- 2 DEHUMDIFICATOR
-- 3 COLD
-- 4 HOT
-- 6 FAN
+value | desc
+:----:|-----
+  1   | AUTO
+  2   | DEHUMDIFICATOR
+  3   | COLD
+  4   | HOT
+  6   | FAN
 
 
 ##Control Info Examples
