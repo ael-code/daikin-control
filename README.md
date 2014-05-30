@@ -1,7 +1,7 @@
 daikin-control
 ==============
 
-The '''Daikin Emura FTXG-L''' air conditioner comes with a wifi module preinstalled that allows you to control via internet.
+The '''Daikin Emura FTXG-L''' air conditioner comes with a wifi module preinstalled that allows you to control it via internet.
 The solution provided by Daikin is a mobile app (very well designed) that allows you to control the air conditioner even remotely, exploiting the REST API of the wifi module.
 
 Even if the system works, there are some problems:
@@ -20,7 +20,7 @@ This project aims to provide 2 main things:
 
 ##API System
 
-Daikin original API use REST
+Daikin original API use REST.
 
 You can use GET http request to retrive informations and POST http request to apply new settings.
 
@@ -115,5 +115,3 @@ Hot 25c ( AIR silence )
 ```
 ret=OK,pow=1,mode=4,adv=,stemp=25.0,shum=0,dt1=25.0,dt2=M,dt3=22.0,dt4=25.0,dt5=25.0,dt7=25.0,dh1=0,dh2=50,dh3=0,dh4=0,dh5=0,dh7=0,dhh=50,b_mode=4,b_stemp=25.0,b_shum=0,alert=255,f_rate=B,f_dir=0,b_f_rate=B,b_f_dir=0,dfr1=B,dfr2=B,dfr3=B,dfr4=B,dfr5=B,dfr6=B,dfr7=B,dfrh=5,dfd1=0,dfd2=0,dfd3=0,dfd4=0,dfd5=0,dfd6=0,dfd7=0,dfdh=0
 ```
-
-method=polling&notice_ip_int=3600&notice_sync_int=60
