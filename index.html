@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Daikin-control : Unofficial api documentation and web interface to control &quot;Daikin Emura FTXG-L&quot; air conditioner  " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Daikin-control</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ael-code/daikin-control">View on GitHub</a>
+
+          <h1 id="project_title">Daikin-control</h1>
+          <h2 id="project_tagline">Unofficial api documentation and web interface to control &quot;Daikin Emura FTXG-L&quot; air conditioner  </h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ael-code/daikin-control/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ael-code/daikin-control/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="daikin-control" class="anchor" href="#daikin-control"><span class="octicon octicon-link"></span></a>daikin-control</h1>
+
+<p>The '''Daikin Emura FTXG-L''' air conditioner comes with a wifi module preinstalled that allows you to control via internet.
+The solution provided by Daikin is a mobile app (very well designed) that allows you to control the air conditioner even remotely, exploiting the REST API of the wifi module.</p>
+
+<p>Even if the system works, there are some problems:</p>
+
+<ul>
+<li>It is no possible to control the AC from a web browser. You must use the official mobile application. If your device is not supported or you are from a computer you can not control your air conditioner over the internet.</li>
+<li>To control your AC remotely from outside your lan, your requests must go through the Daikin server. The device response is slow because the system is based on polling request. (you can't set the ip of the AC on the mobile application)</li>
+<li>Even if the remote management system involves the use of an account with password, there is a big security issue, password and username can be accessed from inside your LAN with a GET request. (try basic_info request)</li>
+</ul><p>This project aims to provide 2 main things:</p>
+
+<ul>
+<li>
+<strong>unoffcial documentation</strong> of Daikin API needed to control the air conditioner</li>
+<li>
+<strong>web interface</strong> to manage air conditioner settings</li>
+</ul><blockquote>
+<p>Throughout this document is to be considered valid for the Daikin Emura FTXG-L with software version 1.4.3</p>
+</blockquote>
+
+<h2>
+<a name="api-system" class="anchor" href="#api-system"><span class="octicon octicon-link"></span></a>API System</h2>
+
+<p>Daikin original API use REST</p>
+
+<p>You can use GET http request to retrive informations and POST http request to apply new settings.</p>
+
+<table>
+<thead><tr>
+<th>Uri</th>
+<th>GET</th>
+<th>POST</th>
+<th>desc</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>/common/basic_info</td>
+<td>X</td>
+<td></td>
+<td>Provides Daikin account information (security issue!), software version, mac address and generic info</td>
+</tr>
+<tr>
+<td>/common/get_remote_method</td>
+<td>X</td>
+<td></td>
+<td>Provides information on the polling system</td>
+</tr>
+<tr>
+<td>/common/set_remote_method</td>
+<td></td>
+<td>X</td>
+<td>Set information on the polling system (reduce remote time update ??)</td>
+</tr>
+<tr>
+<td>/aircon/get_model_info</td>
+<td>X</td>
+<td></td>
+<td>Provides model informarion</td>
+</tr>
+<tr>
+<td>/aircon/get_control_info</td>
+<td>X</td>
+<td></td>
+<td>Main Uri to request all current status parameters</td>
+</tr>
+<tr>
+<td>/aircon/set_control_info</td>
+<td></td>
+<td>X</td>
+<td>Main Uri to set status parameters ( control almost all)</td>
+</tr>
+<tr>
+<td>/aircon/get_sensor_info</td>
+<td>X</td>
+<td></td>
+<td>Provides information on temperatures and sensors</td>
+</tr>
+<tr>
+<td>/aircon/get_timer</td>
+<td>X</td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/set_timer</td>
+<td></td>
+<td>X</td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/get_price</td>
+<td>X</td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/set_price</td>
+<td></td>
+<td>X</td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/get_target</td>
+<td>X</td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/set_target</td>
+<td></td>
+<td>X</td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/get_week_power</td>
+<td>X</td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/get_year_power</td>
+<td>X</td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/get_program</td>
+<td>X</td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>/aircon/set_program</td>
+<td></td>
+<td>X</td>
+<td>?</td>
+</tr>
+<tr>
+<td>/common/get_notify</td>
+<td>X</td>
+<td></td>
+<td>?</td>
+</tr>
+<tr>
+<td>/common/set_notify</td>
+<td></td>
+<td>X</td>
+<td>?</td>
+</tr>
+<tr>
+<td>/common/set_regioncode</td>
+<td></td>
+<td>X</td>
+<td>?</td>
+</tr>
+<tr>
+<td>/common/set_led</td>
+<td></td>
+<td>X</td>
+<td>?</td>
+</tr>
+</tbody>
+</table><h2>
+<a name="control-parameters" class="anchor" href="#control-parameters"><span class="octicon octicon-link"></span></a>Control Parameters</h2>
+
+<h3>
+<a name="power" class="anchor" href="#power"><span class="octicon octicon-link"></span></a>Power</h3>
+
+<p>param name :  <strong>pow</strong></p>
+
+<p>description: represents the power state of the device</p>
+
+<table>
+<thead><tr>
+<th align="center">value</th>
+<th>desc</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td>OFF</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td>ON</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="mode" class="anchor" href="#mode"><span class="octicon octicon-link"></span></a>Mode</h3>
+
+<p>param name :  <strong>mode</strong></p>
+
+<p>description: represents the operating mode</p>
+
+<table>
+<thead><tr>
+<th align="center">value</th>
+<th>desc</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td>AUTO</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>DEHUMDIFICATOR</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>COLD</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>HOT</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td>FAN</td>
+</tr>
+</tbody>
+</table><h3>
+<a name="fan-rate" class="anchor" href="#fan-rate"><span class="octicon octicon-link"></span></a>Fan rate</h3>
+
+<p>param name : <strong>f_rate</strong></p>
+
+<p>description: represents the fan mode</p>
+
+<table>
+<thead><tr>
+<th align="center">value</th>
+<th>desc</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="center">A</td>
+<td>auto</td>
+</tr>
+<tr>
+<td align="center">B</td>
+<td>silence</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>lvl_1</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td>lvl_2</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td>lvl_3</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td>lvl_4</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td>lvl_5</td>
+</tr>
+</tbody>
+</table><h2>
+<a name="unsupported-settings" class="anchor" href="#unsupported-settings"><span class="octicon octicon-link"></span></a>Unsupported settings</h2>
+
+<p>This list show which functionality are not supported in API</p>
+
+<ul>
+<li>led brightness switch</li>
+</ul><h2>
+<a name="useful-resource" class="anchor" href="#useful-resource"><span class="octicon octicon-link"></span></a>Useful resource</h2>
+
+<ul>
+<li><a href="http://daikinsmartdbt.jp/">http://daikinsmartdbt.jp/</a></li>
+</ul><h2>
+<a name="control-info-examples" class="anchor" href="#control-info-examples"><span class="octicon octicon-link"></span></a>Control Info Examples</h2>
+
+<p>Switched Off</p>
+
+<pre><code>ret=OK,pow=0,mode=7,adv=,stemp=24.0,shum=0,dt1=24.0,dt2=M,dt3=25.0,dt4=25.0,dt5=25.0,dt7=24.0,dh1=0,dh2=50,dh3=0,dh4=0,dh5=0,dh7=0,dhh=50,b_mode=7,b_stemp=24.0,b_shum=0,alert=255,f_rate=4,f_dir=0,b_f_rate=4,b_f_dir=0,dfr1=4,dfr2=5,dfr3=7,dfr4=5,dfr5=5,dfr6=5,dfr7=4,dfrh=5,dfd1=0,dfd2=0,dfd3=3,dfd4=0,dfd5=0,dfd6=0,dfd7=0,dfdh=0
+</code></pre>
+
+<p>Auto 25C ( CONFORT AIR ) ( INTELLIGENT EYE )</p>
+
+<pre><code>ret=OK,pow=1,mode=7,adv=,stemp=25.0,shum=0,dt1=25.0,dt2=M,dt3=22.0,dt4=25.0,dt5=25.0,dt7=25.0,dh1=0,dh2=50,dh3=0,dh4=0,dh5=0,dh7=0,dhh=50,b_mode=7,b_stemp=25.0,b_shum=0,alert=255,f_rate=A,f_dir=0,b_f_rate=4,b_f_dir=0,dfr1=4,dfr2=5,dfr3=4,dfr4=5,dfr5=5,dfr6=5,dfr7=4,dfrh=5,dfd1=0,dfd2=0,dfd3=0,dfd4=0,dfd5=0,dfd6=0,dfd7=0,dfdh=0
+</code></pre>
+
+<p>Hot 25c ( AIR silence )</p>
+
+<pre><code>ret=OK,pow=1,mode=4,adv=,stemp=25.0,shum=0,dt1=25.0,dt2=M,dt3=22.0,dt4=25.0,dt5=25.0,dt7=25.0,dh1=0,dh2=50,dh3=0,dh4=0,dh5=0,dh7=0,dhh=50,b_mode=4,b_stemp=25.0,b_shum=0,alert=255,f_rate=B,f_dir=0,b_f_rate=B,b_f_dir=0,dfr1=B,dfr2=B,dfr3=B,dfr4=B,dfr5=B,dfr6=B,dfr7=B,dfrh=5,dfd1=0,dfd2=0,dfd3=0,dfd4=0,dfd5=0,dfd6=0,dfd7=0,dfdh=0
+</code></pre>
+
+<p>method=polling&amp;notice_ip_int=3600&amp;notice_sync_int=60</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Daikin-control maintained by <a href="https://github.com/ael-code">ael-code</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
