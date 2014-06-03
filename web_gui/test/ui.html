@@ -134,23 +134,23 @@
 				setTimeout("location.reload(true);",timeoutPeriod);
 			}
 			//timedRefresh(10000);
-			
+							xmlhttp=new XMLHttpRequest();
+
 			function request() {
-				xmlhttp=new XMLHttpRequest();
-				xmlhttp.onreadystatechange  = ajax_handler(xmlhttp);
-				xmlhttp.open("POST","http://localhost/aircon/engine.php",true);
-				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xmlhttp.send("uri=/aircon/get_control_info&ip=192.168.1.11");
-			}
-			
-			function ajax_handler(xmlhttp) {
+				xmlhttp.onreadystatechange  = function () {
 				if (xmlhttp.readyState == 4  ){
 					var jsonObj = JSON.parse(xmlhttp.responseText);
 					alert("fatto");
 				}else{
-					alert("not 4");
+					alert(xmlhttp.readyState);
 				}
+				}
+
+				xmlhttp.open("POST","http://tommyael.tk/aircon/test_engine.php",true);
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("uri=/aircon/get_control_info&ip=192.168.1.11");
 			}
+			
 			request();
 	</script>
 	<!--
