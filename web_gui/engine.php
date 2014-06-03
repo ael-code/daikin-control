@@ -42,7 +42,7 @@ function get_control_info($aircon_ip){
 	return $control_info;
 }
 
-//retrive infos
+//retrive infos encoded in JSON format
 function get_info($uri,$aircon_ip){
 	$url= "http://$aircon_ip$uri";
 	$data = file_get_contents($url);
@@ -56,6 +56,6 @@ function get_info($uri,$aircon_ip){
 			$control_info[$pair[0]]=$pair[1];
 		}
 	}
-	return $control_info;
+	return json_encode($control_info);
 }
 ?>
