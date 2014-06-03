@@ -133,7 +133,25 @@
    		function timedRefresh(timeoutPeriod) {
 				setTimeout("location.reload(true);",timeoutPeriod);
 			}
-			timedRefresh(10000);
+			//timedRefresh(10000);
+			
+			function request() {
+				xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange  = ajax_handler(xmlhttp);
+				xmlhttp.open("POST","http://localhost/aircon/engine.php",true);
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("uri=/aircon/get_control_info&ip=192.168.1.11");
+			}
+			
+			function ajax_handler(xmlhttp) {
+				if (xmlhttp.readyState == 4  ){
+					var jsonObj = JSON.parse(xmlhttp.responseText);
+					alert("fatto");
+				}else{
+					alert("not 4");
+				}
+			}
+			request();
 	</script>
 	<!--
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
