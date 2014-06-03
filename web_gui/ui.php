@@ -77,8 +77,14 @@ if( $control_info === FALSE){
 		      </div>
 			</div>
 		</div>
-	
 		
 	</div>
+	
+	<script>
+		function timedRefresh(timeoutPeriod) {
+				setTimeout("location.reload(true);",timeoutPeriod);
+			}
+		timedRefresh(3000);
+	</script>
 </body>
 </html>

@@ -27,7 +27,7 @@ You can use GET http request to retrive informations and POST http request to ap
 Uri                | GET | POST | desc
 -------------------|-----|------|-----
 /common/basic_info | X   |      | Provides Daikin account information (security issue!), software version, mac address and generic info
-/common/get_remote_method | X | | Provides information on the polling system
+/common/get_remote_method | X | | Provides information about polling system
 /common/set_remote_method | | X | Set information on the polling system (reduce remote time update ??)
 /aircon/get_model_info | X | | Provides model informarion
 /aircon/get_control_info | X | | Main Uri to request all current status parameters
@@ -39,18 +39,34 @@ Uri                | GET | POST | desc
 /aircon/set_price  | | X | ?
 /aircon/get_target | X | | ?
 /aircon/set_target | | X | ?
-/aircon/get_week_power| X | | ?
-/aircon/get_year_power| X | | ?
+/aircon/get_week_power| X | | Provides weekly runtime information
+/aircon/get_year_power| X | | Provides yearly runtime information
 /aircon/get_program | X | | ?
 /aircon/set_program | | X | ?
+/aircon/get_scdltimer | X | | Provides information about on/off weekly timer
+/aircon/set_scdltimer | | X | Set information about on/off weekly timer
 /common/get_notify  | X | | ?
 /common/set_notify  | | X | ?
 /common/set_regioncode | | X | ?
 /common/set_led | | X | ?
 
-##Control Parameters
+##Parameters
 
-###Power
+###"/common/set_led"
+####Led
+It seems that this settings doesn't actually change led.
+
+param name: **led**
+
+value | desc
+:----:|-----
+  -	| set to '0' (same as '0' value)
+  0   | ?
+  1   | ?
+
+
+
+####Power
 param name :  **pow**
 
 description: represents the power state of the device
@@ -60,7 +76,7 @@ value | desc
   0   | OFF
   1   | ON
 
-###Mode
+####Mode
 
 param name :  **mode**
 
@@ -75,7 +91,7 @@ value | desc
   6   | FAN
 
 
-###Fan rate
+####Fan rate
 
 param name : **f_rate**
 
@@ -111,6 +127,7 @@ Auto 25C ( CONFORT AIR ) ( INTELLIGENT EYE )
 ```
 ret=OK,pow=1,mode=7,adv=,stemp=25.0,shum=0,dt1=25.0,dt2=M,dt3=22.0,dt4=25.0,dt5=25.0,dt7=25.0,dh1=0,dh2=50,dh3=0,dh4=0,dh5=0,dh7=0,dhh=50,b_mode=7,b_stemp=25.0,b_shum=0,alert=255,f_rate=A,f_dir=0,b_f_rate=4,b_f_dir=0,dfr1=4,dfr2=5,dfr3=4,dfr4=5,dfr5=5,dfr6=5,dfr7=4,dfrh=5,dfd1=0,dfd2=0,dfd3=0,dfd4=0,dfd5=0,dfd6=0,dfd7=0,dfdh=0
 ```
+ret=OK,pow=1&dh2=50&dfd4=0&b_stemp=25.0&alert=255&f_dir=0&b_shum=0&dh4=0&dfd3=0&dh3=0&dfd2=0&dfr2=5&dfr7=B&dfr4=5&dfd7=0&dfrh=5&dt3=25.0&dfdh=0&adv=&dh5=0&dh1=0&dfr6=5&dt5=25.0&dfr1=B&stemp=25.0&shum=0&dfd6=0&f_rate=A&b_f_dir=0&dt1=25.0&dhh=50&dfd1=0&dfr3=5&dh7=0&mode=1&dfd5=0&b_mode=7&dt4=25.0&b_f_rate=A&dt7=25.0&dt2=M&dfr5=5 
 Hot 25c ( AIR silence )
 ```
 ret=OK,pow=1,mode=4,adv=,stemp=25.0,shum=0,dt1=25.0,dt2=M,dt3=22.0,dt4=25.0,dt5=25.0,dt7=25.0,dh1=0,dh2=50,dh3=0,dh4=0,dh5=0,dh7=0,dhh=50,b_mode=4,b_stemp=25.0,b_shum=0,alert=255,f_rate=B,f_dir=0,b_f_rate=B,b_f_dir=0,dfr1=B,dfr2=B,dfr3=B,dfr4=B,dfr5=B,dfr6=B,dfr7=B,dfrh=5,dfd1=0,dfd2=0,dfd3=0,dfd4=0,dfd5=0,dfd6=0,dfd7=0,dfdh=0
