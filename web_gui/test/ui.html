@@ -94,15 +94,6 @@
 		  		</div>
 	  		</div>
 		</div>
-
-		
-		
-		
-		
-		
-		
-	
-		
 		
 		<!--
 		<div class="row">
@@ -138,9 +129,9 @@
 			function request() {
 				xmlhttp=new XMLHttpRequest();
 				xmlhttp.onreadystatechange  = ajax_handler(xmlhttp);
-				xmlhttp.open("POST","http://localhost/aircon/engine.php",true);
+				xmlhttp.open("POST","http://localhost/aircon/api.php",true);
 				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xmlhttp.send("uri=/aircon/get_control_info&ip=192.168.1.11");
+				xmlhttp.send("uri=/aircon/get_control_info");
 			}
 			
 			function ajax_handler(xmlhttp) {
