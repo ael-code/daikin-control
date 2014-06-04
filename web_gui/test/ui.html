@@ -37,7 +37,7 @@
 		  		
 		  		<!-- ON/OFF -->
 		  		<div class="col-sm-offset-10 col-sm-2">
-		  		<i class="fa fa-power-off" style="font-size:1.6em;color:black;text-shadow: 0px 0px 2px red;"><b> OFF</b></i>
+		  			<i class="fa fa-power-off" id="power" style="font-size:1.6em;color:black;text-shadow: 0px 0px 2px red;"><b> OFF</b></i>
 		  		</div>
 	  		
 	  		</div>
@@ -47,11 +47,11 @@
 	   			<!-- Mode -->
 					<h4>Mode</h4>
 					<div class="btn-group">
-						<a class="btn btn-default"><i class="fa fa-asterisk fa-2x"></i></a>
-						<a class="btn btn-default"><i class="fa fa-tint fa-2x"></i></a>
-						<a class="btn btn-info"><i class="fa fa-sun-o fa-2x"></i></a>
-						<a class="btn btn-default"><i class="fa fa-retweet fa-2x"></i></a>
-						<a class="btn btn-default"><i class="fa fa-font fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_cooling"><i class="fa fa-asterisk fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_dehum"><i class="fa fa-tint fa-2x"></i></a>
+						<a class="btn btn-info mode-btn" id="mode_heating"><i class="fa fa-sun-o fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_fan"><i class="fa fa-retweet fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_auto"><i class="fa fa-font fa-2x"></i></a>
 					</div>
 					
 		  		</div>
@@ -94,28 +94,7 @@
 		  		</div>
 	  		</div>
 		</div>
-		
-		<!--
-		<div class="row">
-	  		<div class="col-sm-6">
-				<div class="panel panel-default">
-				  
-				  <div class="panel-body">
-					<span class="glyphicon glyphicon-home">
-					<b style="font-size:2em;">21 C</b>
-				  </div>
-				</div>
-			</div>
-	  		<div class="col-sm-6">
-				<div class="panel panel-default">
-		         <div class="panel-body">
-						<span class="glyphicon glyphicon-tree-deciduous">
-						<b>20 C</b>
-		        	</div>
-		      </div>
-			</div>
-		</div>
-		-->	
+	
 	</div>
 	<br>
 
@@ -130,20 +109,75 @@
 			function request() {
 				xmlhttp=new XMLHttpRequest();
 				xmlhttp.onreadystatechange  = function () {
-				if (xmlhttp.readyState == 4  ){
-					var jsonObj = JSON.parse(xmlhttp.responseText);
-					alert("fatto");
-				}else{
-					alert(xmlhttp.readyState);
+					if ( xmlhttp.readyState == 4 ){
+						if( xmlhttp.status==200 ){
+							var jsonObj = JSON.parse(xmlhttp.responseText);
+							alert(jsonObj);
+						}else{
+							alert("ajax status: "+xmlhttp.status);
+						}
+					}else{
+						//alert(xmlhttp.readyState);
+					}
 				}
-				}
-
 				xmlhttp.open("POST","http://tommyael.tk/aircon/api.php",true);
 				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 				xmlhttp.send("uri=/aircon/get_control_info");
 			}
 			
-			request();
+			function set_power(boolean){
+				power = document.getElementById("power")
+				if(boolean){
+					power.innerHTML = "<b> ON</b>";
+					power.style="font-size:1.6em;color:black;text-shadow: 0px 0px 2px green;";
+				}else{
+					power.innerHTML = "<b> OFF</b>";
+					//power.innerHTML.b = "OFF";					
+					power.style="font-size:1.6em;color:black;text-shadow: 0px 0px 2px red;";
+				}
+			}
+			
+			function reset_mode(){
+				var mode_list= document.getElementsByClassName("mode-btn btn-info");
+				
+				for(var i=0; i<mode_list.length; ++i){
+					console.log(mode_list[i]);
+					mode_list[i].className="btn btn-default mode-btn";
+				}
+			}
+			
+			function set_mode(mode){
+				//0 cooling
+				//1 dehum
+				//2 heating
+				//3 fan
+				//4 auto
+				switch(mode){
+					case 0:
+						document.getElementById("mode_cooling").className="btn btn-info mode-btn";
+						break;
+					case 1:
+						document.getElementById("mode_dehum").className="btn btn-info mode-btn";
+						break;
+					case 2:
+						document.getElementById("mode_heating").className="btn btn-info mode-btn";
+						break;
+					case 3:
+						document.getElementById("mode_fan").className="btn btn-info mode-btn";
+						break;
+					case 4:
+						document.getElementById("mode_auto").className="btn btn-info mode-btn";
+						break;
+					default:
+
+				}
+			}
+			
+			//set_power(true);
+			//reset_mode();
+			//set_mode(1);
+			
+			//request();
 	</script>
 	<!--
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
