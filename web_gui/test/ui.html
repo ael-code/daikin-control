@@ -60,9 +60,9 @@
 		  			<!-- Fan -->
 					<h4>Fan</h4>
 					<div class="btn-group">
-						<a class="btn btn-default"><i class="fa fa-font fa-2x"></i></a>
-						<a class="btn btn-default"><i class="fa fa-leaf fa-2x"></i></a>
-						<a class="btn btn-default"><img src="media/level_3.png" height="29px"></a>
+						<a class="btn btn-default fan-btn" id="fan_auto"><i class="fa fa-font fa-2x"></i></a>
+						<a class="btn btn-default fan-btn" id="fan_eco"><i class="fa fa-leaf fa-2x"></i></a>
+						<a class="btn btn-default fan-btn" id="fan_lvl"><img src="media/level_3.png" height="29px" id="fan_lvl_img"></a>
 					</div>
 		  			
 		  		</div>
@@ -74,7 +74,7 @@
 		  			<!--Target temperature-->
 					<h4>Target temperature</h4>
 					<div class="btn-group" >
-						<a class="btn btn-default" style="font-size:1.8em;"><b> 21 C</b></a>
+						<a class="btn btn-default" style="font-size:1.8em;"><b id="target_temp"> 21 C</b></a>
 					</div>
 		  			
 		  		</div>
@@ -84,10 +84,10 @@
 					<h4>Temperatures</h4>
 					<div class="btn-group" >
 						<a class="btn btn-default" style="font-size:1.8em;">
-							<i class="fa fa-home"></i><b> 23 C</b>
+							<i class="fa fa-home"></i><b id="home_temp"> 23 C</b>
 						</a>
 						<a class="btn btn-default" style="font-size:1.8em;">
-							<i class="fa fa-image"></i><b> 27 C</b>
+							<i class="fa fa-image"></i><b id="outside_temp"> 27 C</b>
 						</a>
 					</div>
 		  			
@@ -100,11 +100,13 @@
 
 	
 	<script type="text/javascript">
+   		
    		function timedRefresh(timeoutPeriod) {
 				setTimeout("location.reload(true);",timeoutPeriod);
 			}
 			//timedRefresh(10000);
-							xmlhttp=new XMLHttpRequest();
+			
+			xmlhttp=new XMLHttpRequest();
 
 			function request() {
 				xmlhttp=new XMLHttpRequest();
@@ -112,7 +114,7 @@
 					if ( xmlhttp.readyState == 4 ){
 						if( xmlhttp.status==200 ){
 							var jsonObj = JSON.parse(xmlhttp.responseText);
-							alert(jsonObj);
+							response_handler(jsonObj);
 						}else{
 							alert("ajax status: "+xmlhttp.status);
 						}
@@ -125,14 +127,20 @@
 				xmlhttp.send("uri=/aircon/get_control_info");
 			}
 			
+			function response_handler(jsonObj){
+				reset_mode();
+				reset_fan();
+				set_power(parseInt(jsonObj.pow));
+				set_mode(parseInt(jsonObj.mode));
+			}
+			
 			function set_power(boolean){
 				power = document.getElementById("power")
 				if(boolean){
 					power.innerHTML = "<b> ON</b>";
 					power.style="font-size:1.6em;color:black;text-shadow: 0px 0px 2px green;";
 				}else{
-					power.innerHTML = "<b> OFF</b>";
-					//power.innerHTML.b = "OFF";					
+					power.innerHTML = "<b> OFF</b>";			
 					power.style="font-size:1.6em;color:black;text-shadow: 0px 0px 2px red;";
 				}
 			}
@@ -141,43 +149,87 @@
 				var mode_list= document.getElementsByClassName("mode-btn btn-info");
 				
 				for(var i=0; i<mode_list.length; ++i){
-					console.log(mode_list[i]);
 					mode_list[i].className="btn btn-default mode-btn";
 				}
 			}
 			
 			function set_mode(mode){
-				//0 cooling
-				//1 dehum
-				//2 heating
-				//3 fan
-				//4 auto
+				//2 dehum
+				//3 cooling
+				//4 heating
+				//6 fan
+				//7 auto
 				switch(mode){
-					case 0:
-						document.getElementById("mode_cooling").className="btn btn-info mode-btn";
-						break;
-					case 1:
+					case 2:
 						document.getElementById("mode_dehum").className="btn btn-info mode-btn";
 						break;
-					case 2:
-						document.getElementById("mode_heating").className="btn btn-info mode-btn";
-						break;
 					case 3:
-						document.getElementById("mode_fan").className="btn btn-info mode-btn";
+						document.getElementById("mode_cooling").className="btn btn-info mode-btn";
 						break;
 					case 4:
+						document.getElementById("mode_heating").className="btn btn-info mode-btn";
+						break;
+					case 6:
+						document.getElementById("mode_fan").className="btn btn-info mode-btn";
+						break;
+					case 7:
 						document.getElementById("mode_auto").className="btn btn-info mode-btn";
 						break;
 					default:
-
+						console.log("set_mode() switch: default case reached");
 				}
 			}
 			
-			//set_power(true);
-			//reset_mode();
-			//set_mode(1);
+			function set_home_temp(temp){
+				document.getElementById("home_temp").innerHTML=" "+temp+" C";	
+			}
 			
-			//request();
+			function set_outside_temp(temp){
+				document.getElementById("outside_temp").innerHTML=" "+temp+" C";
+			}
+			
+			function set_target_temp(temp){
+				document.getElementById("target_temp").innerHTML=" "+temp+" C";	
+			}
+			
+			function set_fan(f_mode){
+				switch(f_mode){
+					case 1:
+						document.getElementById("fan_auto").className="btn btn-info fan-btn";
+						break;
+					case 2:
+						document.getElementById("fan_eco").className="btn btn-info fan-btn";
+						break;
+					case 3:
+						document.getElementById("fan_lvl_img").src="media/level_1.png";
+						break;
+					case 4:
+						document.getElementById("fan_lvl_img").src="media/level_2.png";
+						break;
+					case 5:
+						document.getElementById("fan_lvl_img").src="media/level_3.png";
+						break;
+					case 6:
+						document.getElementById("fan_lvl_img").src="media/level_4.png";
+						break;
+					case 7:
+						document.getElementById("fan_lvl_img").src="media/level_5.png";
+						break;
+					
+					default:
+						console.log("set_fan() switch: default case reached");
+				}
+			}
+			
+			function reset_fan(){
+				var fan_list= document.getElementsByClassName("btn-info fan-btn");
+				for(var i=0; i<fan_list.length; ++i){
+					fan_list[i].className="btn btn-default fan-btn";
+				}
+				document.getElementById("fan_lvl_img").src="media/level_0.png";
+			}
+			
+			request();
 	</script>
 	<!--
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

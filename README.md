@@ -84,11 +84,11 @@ description: represents the operating mode
 
 value | desc
 :----:|-----
-  1   | AUTO
   2   | DEHUMDIFICATOR
   3   | COLD
   4   | HOT
   6   | FAN
+  7   | AUTO
 
 
 ####Fan rate
