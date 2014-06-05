@@ -88,7 +88,7 @@ value | desc
   3   | COLD
   4   | HOT
   6   | FAN
-  7   | AUTO
+  0-1-7   | AUTO
 
 
 ####Fan rate
