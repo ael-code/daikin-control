@@ -32,6 +32,11 @@
 		  </div>
 		</nav>
 		
+		<div  class="alert alert-danger sr-only" id="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<p></p>
+		</div>
+		
 		<div class="container-fluid">
 			<div class="row">
 		  		
@@ -49,7 +54,7 @@
 					<div class="btn-group">
 						<a class="btn btn-default mode-btn" id="mode_cooling"><i class="fa fa-asterisk fa-2x"></i></a>
 						<a class="btn btn-default mode-btn" id="mode_dehum"><i class="fa fa-tint fa-2x"></i></a>
-						<a class="btn btn-info mode-btn" id="mode_heating"><i class="fa fa-sun-o fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_heating"><i class="fa fa-sun-o fa-2x"></i></a>
 						<a class="btn btn-default mode-btn" id="mode_fan"><i class="fa fa-retweet fa-2x"></i></a>
 						<a class="btn btn-default mode-btn" id="mode_auto"><i class="fa fa-font fa-2x"></i></a>
 					</div>
@@ -62,7 +67,7 @@
 					<div class="btn-group">
 						<a class="btn btn-default fan-btn" id="fan_auto"><i class="fa fa-font fa-2x"></i></a>
 						<a class="btn btn-default fan-btn" id="fan_eco"><i class="fa fa-leaf fa-2x"></i></a>
-						<a class="btn btn-default fan-btn" id="fan_lvl"><img src="media/level_3.png" height="29px" id="fan_lvl_img"></a>
+						<a class="btn btn-default fan-btn" id="fan_lvl"><img src="media/level_0.png" height="29px" id="fan_lvl_img"></a>
 					</div>
 		  			
 		  		</div>
@@ -74,7 +79,7 @@
 		  			<!--Target temperature-->
 					<h4>Target temperature</h4>
 					<div class="btn-group" >
-						<a class="btn btn-default" style="font-size:1.8em;"><b id="target_temp"> 21 C</b></a>
+						<a class="btn btn-default" style="font-size:1.8em;"><b id="target_temp"> - C</b></a>
 					</div>
 		  			
 		  		</div>
@@ -84,10 +89,10 @@
 					<h4>Temperatures</h4>
 					<div class="btn-group" >
 						<a class="btn btn-default" style="font-size:1.8em;">
-							<i class="fa fa-home"></i><b id="home_temp"> 23 C</b>
+							<i class="fa fa-home"></i><b id="home_temp"> - C</b>
 						</a>
 						<a class="btn btn-default" style="font-size:1.8em;">
-							<i class="fa fa-image"></i><b id="outside_temp"> 27 C</b>
+							<i class="fa fa-image"></i><b id="outside_temp"> - C</b>
 						</a>
 					</div>
 		  			
@@ -104,19 +109,17 @@
    		function timedRefresh(timeoutPeriod) {
 				setTimeout("location.reload(true);",timeoutPeriod);
 			}
-			//timedRefresh(10000);
 			
-			xmlhttp=new XMLHttpRequest();
-
-			function request() {
+			function request_control() {
 				xmlhttp=new XMLHttpRequest();
 				xmlhttp.onreadystatechange  = function () {
 					if ( xmlhttp.readyState == 4 ){
 						if( xmlhttp.status==200 ){
 							var jsonObj = JSON.parse(xmlhttp.responseText);
-							response_handler(jsonObj);
+							control_response_handler(jsonObj);
 						}else{
-							alert("ajax status: "+xmlhttp.status);
+							console.log("Error: control ajax request failed");
+							set_alert(1,"<b>Error:</b> control ajax request failed");
 						}
 					}else{
 						//alert(xmlhttp.readyState);
@@ -127,21 +130,47 @@
 				xmlhttp.send("uri=/aircon/get_control_info");
 			}
 			
-			function response_handler(jsonObj){
+			function request_sensor(){
+				xmlhttp=new XMLHttpRequest();
+				xmlhttp.onreadystatechange  = function () {
+					if ( xmlhttp.readyState == 4 ){
+						if( xmlhttp.status==200 ){
+							var jsonObj = JSON.parse(xmlhttp.responseText);
+							sensor_response_handler(jsonObj);
+						}else{
+							console.log("Error: sensor ajax request failed");
+							set_alert(1,"<b>Error:</b> sensor ajax request failed");
+						}
+					}else{
+						//alert(xmlhttp.readyState);
+					}
+				}
+				xmlhttp.open("POST","http://tommyael.tk/aircon/api.php",true);
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("uri=/aircon/get_sensor_info");
+			}
+			
+			function control_response_handler(jsonObj){
 				reset_mode();
 				reset_fan();
 				set_power(parseInt(jsonObj.pow));
 				set_mode(parseInt(jsonObj.mode));
 			}
 			
+			function control_response_handler(jsonObj){
+				set_home_temp(jsonObj.htemp);
+				set_outside_temp(jsonObj.otemp);
+			}
+			
+			
 			function set_power(boolean){
 				power = document.getElementById("power")
 				if(boolean){
-					power.innerHTML = "<b> ON</b>";
-					power.style="font-size:1.6em;color:black;text-shadow: 0px 0px 2px green;";
+					power.firstElementChild.innerHTML = " ON";
+					power.style.textShadow="0px 0px 2px green";
 				}else{
-					power.innerHTML = "<b> OFF</b>";			
-					power.style="font-size:1.6em;color:black;text-shadow: 0px 0px 2px red;";
+					power.firstElementChild.innerHTML = " OFF";			
+					power.style.textShadow="0px 0px 2px red";
 				}
 			}
 			
@@ -229,6 +258,19 @@
 				document.getElementById("fan_lvl_img").src="media/level_0.png";
 			}
 			
+			function set_alert(boolean,mex){
+				var alert = document.getElementById("alert");
+				if(boolean){
+					alert.classList.remove("sr-only")
+					alert.className="alert alert-danger";
+					alert.lastElementChild.innerHTML=mex;
+					
+				}else{
+					alert.className="alert alert-danger sr-only";
+					alert.classList.add("sr-only");
+				
+				}
+			}
 			request();
 	</script>
 	<!--
