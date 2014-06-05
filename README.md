@@ -1,8 +1,9 @@
 daikin-control
 ==============
 
+![Web Gui Preview](https://raw.githubusercontent.com/ael-code/daikin-control/ajax_testing/web_gui.png)
 
-r comes with a wifi module preinstalled that allows you to control it via internet.
+The '''Daikin Emura FTXG-L''' air conditioner comes with a wifi module preinstalled that allows you to control it via internet.
 The solution provided by Daikin is a mobile app (very well designed) that allows you to control the air conditioner even remotely, exploiting the REST API of the wifi module.
 
 Even if the system works, there are some problems:
