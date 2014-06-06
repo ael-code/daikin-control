@@ -20,7 +20,10 @@ function get_array_info($uri,$aircon_ip){
 
 //retrive infos encoded in JSON format
 function get_json_info($uri,$aircon_ip){
-	return json_encode(get_array_info($uri,$aircon_ip));
+	$array_info=get_array_info($uri,$aircon_ip);
+	if($array_info === FALSE)
+		return FALSE;
+	return json_encode($array_info);
 }
 
 ?>
