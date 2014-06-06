@@ -4,7 +4,7 @@
 function get_array_info($uri,$aircon_ip){
 	
 	$url= "http://$aircon_ip$uri";
-	$data = file_get_contents($url);
+	$data = @file_get_contents($url);
 	if($data === FALSE){
 		return FALSE;
 	}else{
