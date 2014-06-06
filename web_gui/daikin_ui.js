@@ -1,5 +1,6 @@
 var request_control_loading = 0;
 var request_sensor_loading = 0;
+var timer = 5000; //millisecond
 
 function request_control() {
 	
@@ -11,8 +12,8 @@ function request_control() {
 			if( xmlhttp.status==200 ){
 				var jsonObj = JSON.parse(xmlhttp.responseText);
 				control_response_handler(jsonObj);
+				setTimeout(request_control, timer);
 			}else{
-			
 				console.log("Error: control ajax request failed");
 				set_alert(1,"<b>Error:</b> control ajax request failed");
 			}
@@ -36,6 +37,7 @@ function request_sensor(){
 			if( xmlhttp.status==200 ){
 				var jsonObj = JSON.parse(xmlhttp.responseText);
 				sensor_response_handler(jsonObj);
+				setTimeout(request_sensor, timer);
 			}else{
 				console.log("Error: sensor ajax request failed");
 				set_alert(1,"<b>Error:</b> sensor ajax request failed");
@@ -198,4 +200,3 @@ function update(){
 }
 
 update();
-setInterval(update,5000);
