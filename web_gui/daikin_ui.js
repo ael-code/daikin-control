@@ -21,7 +21,7 @@ function request_control() {
 			//alert(xmlhttp.readyState);
 		}
 	}
-	xmlhttp.open("POST","http://tommyael.tk/aircon/api.php",true);
+	xmlhttp.open("POST","api.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("uri=/aircon/get_control_info");
 	request_control_loading = 1;
@@ -47,7 +47,7 @@ function request_sensor(){
 			//alert(xmlhttp.readyState);
 		}
 	}
-	xmlhttp.open("POST","http://tommyael.tk/aircon/api.php",true);
+	xmlhttp.open("POST","api.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("uri=/aircon/get_sensor_info");
 	request_sensor_loading = 1;
