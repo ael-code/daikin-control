@@ -60,8 +60,9 @@ function request_sensor(){
 }
 
 function control_response_handler(jsonObj){
-	reset_mode();
+	reset_wing();
 	reset_fan();
+	reset_mode();
 	set_target_temp(parseInt(jsonObj.stemp));
 	set_power(parseInt(jsonObj.pow));
 	set_mode(parseInt(jsonObj.mode));
