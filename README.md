@@ -67,7 +67,7 @@ value | desc
   1   | ?
 
 
-
+###"/common/set_control_info"
 ####Power
 param name :  **pow**
 
@@ -79,7 +79,6 @@ value | desc
   1   | ON
 
 ####Mode
-
 param name :  **mode**
 
 description: represents the operating mode
@@ -92,12 +91,17 @@ value | desc
   6   | FAN
   0-1-7   | AUTO
 
+####Temp
+param name : **stemp**
+
+description: represents the target temperature
+
+device memorize last target temp state for each mode under dft* (dfr1,dfr2...) parameters. You can't set directly these.
 
 ####Fan rate
-
 param name : **f_rate**
 
-description: represents the fan mode
+description: represents the fan rate mode
 
 value | desc
 :----:|-----
@@ -109,9 +113,47 @@ B     | silence
 6     | lvl_4
 7     | lvl_5
 
+device memorize last fan rate state for each mode under dfr* (dfr1,dfr2...) parameters. You can't set directly these.
+
+####Fan direction
+param name : **f_dir**
+
+description: represents the fan direction
+
+value | desc
+:----:|-----
+0     | all wings stopped
+1     | vertical wings motion
+2     | horizontal wings motion
+3     | vertical and horizontal wings motion
+
+####Temp
+param name : **shum**
+
+description: represents the target humidity
+
+Daikin Emura FTXG-L does not support humidity related functionality.
+
+device memorize last humidity state for each mode under dh* (dfr1,dfr2...) parameters. You can't set directly these.
+
+Posting to set_control_info you can omit these param:
+- adv
+- dt*
+- dh*
+- dfr*
+- dfd*
+- b_mode
+- b_stemp
+- b_shum
+- b_f_rate
+- b_f_dir
+- alert
+
+minimal request example: pow=1&mode=1&stemp=26&shum=0&f_rate=B&f_dir=3
+
 
 ##Unsupported settings
-This list show which functionality are not supported in API
+This list show which hardware functionality are not supported by API
 
 - led brightness switch
 
