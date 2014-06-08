@@ -2,6 +2,11 @@ var request_control_loading = 0;
 var request_sensor_loading = 0;
 var timer = 5000; //millisecond
 
+//function target_temp_onclick(){
+//	alert("ciao");
+//}
+
+
 function request_control() {
 	
 	var xmlhttp=new XMLHttpRequest();
@@ -69,6 +74,7 @@ function control_response_handler(jsonObj){
 		f_mode = parseInt(f_mode);
 	}
 	set_fan(f_mode);
+	set_wing(parseInt(jsonObj.f_dir));
 }
 
 function sensor_response_handler(jsonObj){
@@ -171,6 +177,41 @@ function reset_fan(){
 	}
 	document.getElementById("fan_lvl_img").src="media/level_0.png";
 }
+
+function reset_wing(){
+	var wing_list = document.ge`tElementsByClassName("wing-btn");
+	for(var i=0; i<wing_list.length; ++i){
+		wing_list[i].classList.remove("btn-info");
+		wing_list[i].classList.add("btn-default");
+	}
+}
+
+function set_wing(wing_mode){
+	switch(wing_mode){
+		case 0:
+			reset_wing();
+			break;
+		case 1:
+			var elem = document.getElementById("wing_v");
+			elem.classList.remove("btn-default");
+			elem.classList.add("btn-info");
+			break;
+		case 2:
+			var elem = document.getElementById("wing_h");
+			elem.classList.remove("btn-default");
+			elem.classList.add("btn-info");
+			break;
+		case 3:
+			var elem = document.getElementById("wing_b");
+			elem.classList.remove("btn-default");
+			elem.classList.add("btn-info");
+			break;
+		default:
+			console.log("set_wing() switch: default case reached");
+	}
+}
+
+
 function set_loading(boolean){
 	var spinner = document.getElementById("spinner");
 	if(boolean){

@@ -44,13 +44,14 @@
 			<div class="row">
 		  		
 		  		<!-- ON/OFF -->
-		  		<div class="col-sm-offset-10 col-sm-2">
+		  		<div class="col-sm-offset-10 col-sm-2 pull-right">
 		  			<i class="fa fa-power-off" style="font-size:1.6em;color:black;"></i><b style="font-size:1.5em;" id="power"> OFF</b>
 		  		</div>
 	  		
 	  		</div>
+			<br>
 			<div class="row">
-	   		<div class="col-sm-6">
+	   		<div class="col-md-4 col-sm-6">
 	   		
 	   			<!-- Mode -->
 					<h4>Mode</h4>
@@ -63,30 +64,55 @@
 					</div>
 					
 		  		</div>
-		  		<div class="col-sm-6">
+		  		<div class="col-md-4 col-sm-6">
 		  		
 		  			<!-- Fan -->
 					<h4>Fan</h4>
 					<div class="btn-group">
-						<a class="btn btn-default fan-btn" id="fan_auto"><i class="fa fa-font fa-2x"></i></a>
+						<a class="btn btn-default fan-btn" id="fan_auto"><i class="fa fa-font fa-2x"></i></a>default
 						<a class="btn btn-default fan-btn" id="fan_eco"><i class="fa fa-leaf fa-2x"></i></a>
 						<a class="btn btn-default fan-btn" id="fan_lvl"><img src="media/level_0.png" height="29px" id="fan_lvl_img"></a>
 					</div>
 		  			
 		  		</div>
+		  		<div class="col-md-4 hidden-sm">
+		  		
+		  			<!-- Wings Direction -->
+					<h4>Wings Direction</h4>
+					<div class="btn-group" >
+						<a class="btn btn-default wing-btn" id="wing_v"><i class="fa fa-arrows-v fa-2x"></i></a>
+						<a class="btn btn-default wing-btn" id="wing_h"><i class="fa fa-arrows-h fa-2x"></i></a>
+						<a class="btn btn-default wing-btn"	id="wing_b"><i class="fa fa-arrows fa-2x"></i></a>
+					</div>
+				
+				</div>
 		  	</div>
 		  	<br>
 		  	<div class="row">
-		  		<div class="col-sm-6">
+		  		<div class="visible-sm col-sm-6">
+		  			
+		  			<!-- Wings Direction -->
+					<h4>Wings Direction</h4>
+					<div class="btn-group" >
+						<a class="btn btn-default wing-btn" id="wing_v"><i class="fa fa-arrows-v fa-2x"></i></a>
+						<a class="btn btn-default wing-btn" id="wing_h"><i class="fa fa-arrows-h fa-2x"></i></a>
+						<a class="btn btn-default wing-btn"	id="wing_b"><i class="fa fa-arrows fa-2x"></i></a>
+					</div>		  		
+				
+				</div>
+			</div>	  	
+		  	<br>
+		  	<div class="row">
+		  		<div class="col-md-4 col-sm-6">
 		  			
 		  			<!--Target temperature-->
 					<h4>Target temperature</h4>
 					<div class="btn-group" >
-						<a class="btn btn-default" style="font-size:1.8em;"><b id="target_temp"> - C</b></a>
+						<a class="btn btn-default" onclick="target_temp_onclick();" style="font-size:1.8em;"><b id="target_temp"> - C</b></a>
 					</div>
 		  			
 		  		</div>
-		  		<div class="col-sm-6">
+		  		<div class="col-md-4 col-sm-6">
 		  			
 		  			<!-- TEMPERATURES -->
 					<h4>Temperatures</h4>
