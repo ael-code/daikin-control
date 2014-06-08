@@ -179,7 +179,7 @@ function reset_fan(){
 }
 
 function reset_wing(){
-	var wing_list = document.ge`tElementsByClassName("wing-btn");
+	var wing_list = document.getElementsByClassName("wing-btn");
 	for(var i=0; i<wing_list.length; ++i){
 		wing_list[i].classList.remove("btn-info");
 		wing_list[i].classList.add("btn-default");
