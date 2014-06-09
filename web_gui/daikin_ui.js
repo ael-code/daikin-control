@@ -42,6 +42,10 @@ function request_control() {
 	set_loading(1);
 }
 
+function send_control(){
+	
+}
+
 function request_sensor(){
 	
 	var target="api.php";
