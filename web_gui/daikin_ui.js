@@ -31,7 +31,7 @@ function request_control() {
 		}
 	}
 	
-	xmlhttp.open(request,target + "?" + paramters ,true);
+	xmlhttp.open(request,target + "?" + parameters ,true);
 	//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();
 	request_control_loading = 1;
