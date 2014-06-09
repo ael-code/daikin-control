@@ -2,6 +2,9 @@ var request_control_loading = 0;
 var request_sensor_loading = 0;
 var timer = 5000; //millisecond
 
+var control_response;
+var sensor_response; 
+
 //function target_temp_onclick(){
 //	alert("ciao");
 //}
@@ -20,6 +23,7 @@ function request_control() {
 			if((! request_control_loading) && (! request_sensor_loading)){set_loading(0);}
 			if( xmlhttp.status==200 ){
 				var jsonObj = JSON.parse(xmlhttp.responseText);
+				control_response=jsonObj;
 				control_response_handler(jsonObj);
 				setTimeout(request_control, timer);
 			}else{
@@ -51,6 +55,7 @@ function request_sensor(){
 			if((! request_control_loading) && (! request_sensor_loading)){set_loading(0);}
 			if( xmlhttp.status==200 ){
 				var jsonObj = JSON.parse(xmlhttp.responseText);
+				sensor_response=jsonObj;
 				sensor_response_handler(jsonObj);
 				setTimeout(request_sensor, timer);
 			}else{
