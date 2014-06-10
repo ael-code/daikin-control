@@ -54,20 +54,8 @@ Uri                | GET | POST | desc
 
 ##Parameters
 
-###"/common/set_led"
-####Led
-It seems that this settings doesn't actually change led.
-
-param name: **led**
-
-value | desc
-:----:|-----
-  -	| set to '0' (same as '0' value)
-  0   | ?
-  1   | ?
-
-
 ###"/common/set_control_info"
+
 ####Power
 param name :  **pow**
 
@@ -96,7 +84,7 @@ param name : **stemp**
 
 description: represents the target temperature
 
-device memorize last target temp state for each mode under dft* (dfr1,dfr2...) parameters. You can't set directly these.
+device memorize last target temp state for each mode under dft* (dft1,dft2...) parameters. You can't set directly these.
 
 ####Fan rate
 param name : **f_rate**
@@ -127,14 +115,18 @@ value | desc
 2     | horizontal wings motion
 3     | vertical and horizontal wings motion
 
-####Temp
+device memorize last fan rate state for each mode under dfd* (dfd1,dfd2...) parameters. You can't set directly these.
+
+####Humidity
 param name : **shum**
 
 description: represents the target humidity
 
 Daikin Emura FTXG-L does not support humidity related functionality.
 
-device memorize last humidity state for each mode under dh* (dfr1,dfr2...) parameters. You can't set directly these.
+device memorize last humidity state for each mode under dh* (dh1,dh2...) parameters. You can't set directly these.
+
+------------------------------
 
 Posting to set_control_info you can omit these param:
 - adv
@@ -151,6 +143,17 @@ Posting to set_control_info you can omit these param:
 
 minimal request example: pow=1&mode=1&stemp=26&shum=0&f_rate=B&f_dir=3
 
+###"/common/set_led"
+####Led
+It seems that this settings doesn't actually change led.
+
+param name: **led**
+
+value | desc
+:----:|-----
+  -	| set to '0' (same as '0' value)
+  0   | ?
+  1   | ?
 
 ##Unsupported settings
 This list show which hardware functionality are not supported by API

@@ -124,11 +124,11 @@ function minimize_opt(opt){
 	var min_opt = {};
 	
 	for (var x in opt) {
-    	if(x == "pow" ||
-    		x == "mode" ||
-    		x == "stemp" ||
-    		x == "shum" ||
-    		x == "f_rate" ||
+    	if(x == "pow" 		||
+    		x == "mode" 	||
+    		x == "stemp" 	||
+    		x == "shum" 	||
+    		x == "f_rate" 	||
     		x == "f_dir"    		
     	){
     		min_opt[x] = opt[x];
@@ -139,14 +139,35 @@ function minimize_opt(opt){
 }
 
 
-
+//----------ON CLICK FUNCTIONS------------
 
 function wing_onclick(num){
 	var temp = minimize_opt(control_response);
 	temp.f_dir = num;
-	clearTimeout(control_timeout);
 	send_control(temp);
-	request_control();
+	update();
+}
+
+function mode_onclick(num){
+	var temp = minimize_opt(control_response);
+	temp["mode"] = num;
+	temp["f_rate"] = control_response["dfr"+num];
+	temp["f_dir"] = control_response["dfd"+num];
+	temp["shum"] = "0";
+	if(num == "6"){
+		temp["stemp"] = "0";
+	}else{
+		temp["stemp"] = control_response["dt"+num];
+	}
+	send_control(temp);
+	update();
+}
+
+function power_onclick(){
+	var temp = minimize_opt(control_response);
+	temp.pow = ((temp.pow == "0") ? 1 : 0);
+	send_control(temp);
+	update();
 }
 
 
@@ -208,7 +229,22 @@ function set_outside_temp(temp){
 }
 
 function set_target_temp(temp){
-	document.getElementById("target_temp").innerHTML=" "+temp+" C";	
+	if(isNaN(temp)){
+		show_target_temp(0);
+		document.getElementById("target_temp").innerHTML=" ~ ";
+	}else{
+		document.getElementById("target_temp").innerHTML=" "+temp+" C";
+		show_target_temp(1);
+	}
+}
+
+function show_target_temp(boolean){
+	var tt_col = document.getElementById("target_temp_col");
+	if(boolean){
+		tt_col.classList.remove("sr-only");
+	}else{
+		tt_col.classList.add("sr-only");
+	}
 }
 
 function set_fan(f_mode){				
@@ -306,8 +342,12 @@ function set_alert(boolean,mex){
 }
 
 function update(){
-	request_control();
-	request_sensor();
+	clearTimeout(control_timeout);
+	clearTimeout(sensor_timeout);
+	if( ! request_control_loading )
+		request_control();
+	if( ! request_sensor_loading )
+		request_sensor();
 }
 
 update();
