@@ -124,7 +124,7 @@ function sensor_response_handler(response){
 
 
 function minimize_opt(opt){
-	var min_opt = new Array();
+	var min_opt = {};
 	
 	for (var x in opt) {
     	if(x == "pow" ||
