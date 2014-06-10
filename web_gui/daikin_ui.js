@@ -3,11 +3,7 @@ var request_sensor_loading = 0;
 var timer = 5000; //millisecond
 
 var control_response;
-var sensor_response; 
-
-function target_temp_onclick(){
-	console.log(minimize_opt(control_response));
-}
+var sensor_response;
 
 
 function request_control() {
@@ -122,7 +118,6 @@ function sensor_response_handler(response){
 	set_outside_temp(parseInt(response.otemp));
 }
 
-
 function minimize_opt(opt){
 	var min_opt = {};
 	
@@ -139,6 +134,12 @@ function minimize_opt(opt){
    }
    
    return min_opt;
+}
+
+function wing_onclick(num){
+	var temp = minimize_opt(control_response);
+	temp.f_dir = num;
+	send_control(temp);
 }
 
 

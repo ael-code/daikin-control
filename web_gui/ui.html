@@ -80,9 +80,9 @@
 		  			<!-- Wings Direction -->
 					<h4>Wings Direction</h4>
 					<div class="btn-group" >
-						<a class="btn btn-default wing-btn" id="wing_v"><i class="fa fa-arrows-v fa-2x"></i></a>
-						<a class="btn btn-default wing-btn" id="wing_h"><i class="fa fa-arrows-h fa-2x"></i></a>
-						<a class="btn btn-default wing-btn"	id="wing_b"><i class="fa fa-arrows fa-2x"></i></a>
+						<a class="btn btn-default wing-btn" id="wing_v" onclick='wing_onclick("1");'><i class="fa fa-arrows-v fa-2x"></i></a>
+						<a class="btn btn-default wing-btn" id="wing_h" onclick='wing_onclick("2");'><i class="fa fa-arrows-h fa-2x"></i></a>
+						<a class="btn btn-default wing-btn"	id="wing_b" onclick='wing_onclick("3");'><i class="fa fa-arrows fa-2x"></i></a>
 					</div>
 				
 				</div>
@@ -108,7 +108,7 @@
 		  			<!--Target temperature-->
 					<h4>Target temperature</h4>
 					<div class="btn-group" >
-						<a class="btn btn-default" onclick="target_temp_onclick();" style="font-size:1.8em;"><b id="target_temp"> - C</b></a>
+						<a class="btn btn-default" style="font-size:1.8em;"><b id="target_temp"> - C</b></a>
 					</div>
 		  			
 		  		</div>
