@@ -3,7 +3,10 @@ var request_sensor_loading = 0;
 var timer = 5000; //millisecond
 
 var control_response;
+var control_timeout;
+
 var sensor_response;
+var sensor_timeout;
 
 
 function request_control() {
@@ -21,7 +24,7 @@ function request_control() {
 				var response = JSON.parse(xmlhttp.responseText);
 				control_response=response;
 				control_response_handler(response);
-				setTimeout(request_control, timer);
+				control_timeout = setTimeout(request_control, timer);
 			}else{
 				console.log("Error: control ajax request failed");
 				set_alert(1,"<b>Error:</b> control ajax request failed");
@@ -32,7 +35,6 @@ function request_control() {
 	}
 	
 	xmlhttp.open(request,target + "?" + parameters ,true);
-	//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();
 	request_control_loading = 1;
 	set_loading(1);
@@ -77,7 +79,7 @@ function request_sensor(){
 				var response = JSON.parse(xmlhttp.responseText);
 				sensor_response=response;
 				sensor_response_handler(response);
-				setTimeout(request_sensor, timer);
+				sensor_timeout = setTimeout(request_sensor, timer);
 			}else{
 				console.log("Error: sensor ajax request failed");
 				set_alert(1,"<b>Error:</b> sensor ajax request failed");
@@ -136,12 +138,20 @@ function minimize_opt(opt){
    return min_opt;
 }
 
+
+
+
 function wing_onclick(num){
 	var temp = minimize_opt(control_response);
 	temp.f_dir = num;
+	clearTimeout(control_timeout);
 	send_control(temp);
+	request_control();
 }
 
+
+
+//---------GUI SET FUNCTIONS------------
 
 function set_power(boolean){
 	power = document.getElementById("power")
