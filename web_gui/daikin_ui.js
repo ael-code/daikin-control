@@ -42,8 +42,28 @@ function request_control() {
 	set_loading(1);
 }
 
-function send_control(){
+function send_control(json_opt){
+	var target="api.php";
+	var request="POST";
 	
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange  = function () {
+		if ( xmlhttp.readyState == 4 ){
+			if( xmlhttp.status==200 ){
+				var jsonObj = JSON.parse(xmlhttp.responseText);
+				console.log(jsonObj);
+			}else{
+				console.log("Error: send control request failed");
+			}
+		}else{
+			//alert(xmlhttp.readyState);
+		}
+	}
+	
+	xmlhttp.open(request,target,true);
+	xmlhttp.setRequestHeader("Content-type","application/json");
+	xmlhttp.send(json_opt);
+		
 }
 
 function request_sensor(){

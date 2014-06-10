@@ -40,7 +40,7 @@ function set_array_info($uri,$aircon_ip,$parameters){
 			$pair= explode("=",$value);
 			$control_info[$pair[0]]=$pair[1];
 		}
-		return $control_info;
+		return json_encode($control_info);
 	}
 }
 
