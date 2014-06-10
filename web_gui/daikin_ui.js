@@ -123,6 +123,25 @@ function sensor_response_handler(jsonObj){
 }
 
 
+function minimize_opt(opt){
+	var min_opt = new Array();
+	
+	for (var x in opt) {
+    	if(x == "pow" ||
+    		x == "mode" ||
+    		x == "stemp" ||
+    		x == "shum" ||
+    		x == "f_rate" ||
+    		x == "f_dir"    		
+    	){
+    		min_opt[x] = opt[x];
+    	}
+   }
+   
+   return min_opt;
+}
+
+
 function set_power(boolean){
 	power = document.getElementById("power")
 	if(boolean){
