@@ -5,9 +5,9 @@ var timer = 5000; //millisecond
 var control_response;
 var sensor_response; 
 
-//function target_temp_onclick(){
-//	alert("ciao");
-//}
+function target_temp_onclick(){
+	console.log(minimize_opt(control_response));
+}
 
 
 function request_control() {
@@ -22,9 +22,9 @@ function request_control() {
 			request_control_loading=0;
 			if((! request_control_loading) && (! request_sensor_loading)){set_loading(0);}
 			if( xmlhttp.status==200 ){
-				var jsonObj = JSON.parse(xmlhttp.responseText);
-				control_response=jsonObj;
-				control_response_handler(jsonObj);
+				var response = JSON.parse(xmlhttp.responseText);
+				control_response=response;
+				control_response_handler(response);
 				setTimeout(request_control, timer);
 			}else{
 				console.log("Error: control ajax request failed");
@@ -42,7 +42,7 @@ function request_control() {
 	set_loading(1);
 }
 
-function send_control(json_opt){
+function send_control(opts){
 	var target="api.php";
 	var request="POST";
 	
@@ -50,8 +50,8 @@ function send_control(json_opt){
 	xmlhttp.onreadystatechange  = function () {
 		if ( xmlhttp.readyState == 4 ){
 			if( xmlhttp.status==200 ){
-				var jsonObj = JSON.parse(xmlhttp.responseText);
-				console.log(jsonObj);
+				var response = JSON.parse(xmlhttp.responseText);
+				console.log(response);
 			}else{
 				console.log("Error: send control request failed");
 			}
@@ -62,7 +62,7 @@ function send_control(json_opt){
 	
 	xmlhttp.open(request,target,true);
 	xmlhttp.setRequestHeader("Content-type","application/json");
-	xmlhttp.send(json_opt);
+	xmlhttp.send(JSON.stringify(opts));
 		
 }
 
@@ -78,9 +78,9 @@ function request_sensor(){
 		request_sensor_loading=0;
 			if((! request_control_loading) && (! request_sensor_loading)){set_loading(0);}
 			if( xmlhttp.status==200 ){
-				var jsonObj = JSON.parse(xmlhttp.responseText);
-				sensor_response=jsonObj;
-				sensor_response_handler(jsonObj);
+				var response = JSON.parse(xmlhttp.responseText);
+				sensor_response=response;
+				sensor_response_handler(response);
 				setTimeout(request_sensor, timer);
 			}else{
 				console.log("Error: sensor ajax request failed");
@@ -98,14 +98,14 @@ function request_sensor(){
 	set_loading(1);
 }
 
-function control_response_handler(jsonObj){
+function control_response_handler(response){
 	reset_wing();
 	reset_fan();
 	reset_mode();
-	set_target_temp(parseInt(jsonObj.stemp));
-	set_power(parseInt(jsonObj.pow));
-	set_mode(parseInt(jsonObj.mode));
-	var f_mode = jsonObj.f_rate;
+	set_target_temp(parseInt(response.stemp));
+	set_power(parseInt(response.pow));
+	set_mode(parseInt(response.mode));
+	var f_mode = response.f_rate;
 	if(f_mode === "A"){
 		f_mode = 1;	
 	}else if(f_mode === "B"){
@@ -114,12 +114,12 @@ function control_response_handler(jsonObj){
 		f_mode = parseInt(f_mode);
 	}
 	set_fan(f_mode);
-	set_wing(parseInt(jsonObj.f_dir));
+	set_wing(parseInt(response.f_dir));
 }
 
-function sensor_response_handler(jsonObj){
-	set_home_temp(parseInt(jsonObj.htemp));
-	set_outside_temp(parseInt(jsonObj.otemp));
+function sensor_response_handler(response){
+	set_home_temp(parseInt(response.htemp));
+	set_outside_temp(parseInt(response.otemp));
 }
 
 
