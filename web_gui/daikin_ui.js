@@ -141,12 +141,6 @@ function minimize_opt(opt){
 
 //----------ON CLICK FUNCTIONS------------
 
-function wing_onclick(num){
-	var temp = minimize_opt(control_response);
-	temp.f_dir = num;
-	send_control(temp);
-	update();
-}
 
 function mode_onclick(num){
 	var temp = minimize_opt(control_response);
@@ -170,6 +164,23 @@ function power_onclick(){
 	update();
 }
 
+function fan_onclick(level){
+	var temp = minimize_opt(control_response);
+	temp.f_rate = level;
+	send_control(temp);
+	update();
+}
+
+function wing_onclick(num){
+	var temp = minimize_opt(control_response);
+	if(num == control_response.f_dir){
+		temp.f_dir = 0;
+	}else{
+		temp.f_dir = num;
+	}
+	send_control(temp);
+	update();
+}
 
 
 //---------GUI SET FUNCTIONS------------
