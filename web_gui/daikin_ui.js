@@ -9,6 +9,10 @@ var timer = 5000; //millisecond
 
 function request_control() {
 	
+	var target="api.php";
+	var request="GET";
+	var parameters="uri=/aircon/get_control_info";
+	
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange  = function () {
 		if ( xmlhttp.readyState == 4 ){
@@ -26,14 +30,20 @@ function request_control() {
 			//alert(xmlhttp.readyState);
 		}
 	}
-	xmlhttp.open("POST","api.php",true);
-	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("uri=/aircon/get_control_info");
+	
+	xmlhttp.open(request,target + "?" + parameters ,true);
+	//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send();
 	request_control_loading = 1;
 	set_loading(1);
 }
 
 function request_sensor(){
+	
+	var target="api.php";
+	var request="GET";
+	var parameters="uri=/aircon/get_sensor_info";
+	
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange  = function () {
 		if ( xmlhttp.readyState == 4 ){
@@ -52,9 +62,9 @@ function request_sensor(){
 			//alert(xmlhttp.readyState);
 		}
 	}
-	xmlhttp.open("POST","api.php",true);
-	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("uri=/aircon/get_sensor_info");
+	xmlhttp.open(request,target + "?" + parameters ,true);
+	//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send();
 	request_sensor_loading = 1;
 	set_loading(1);
 }
