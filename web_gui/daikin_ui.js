@@ -100,7 +100,52 @@ function control_response_handler(response){
 	reset_wing();
 	reset_fan();
 	reset_mode();
-	set_target_temp(parseInt(response.stemp));
+	
+	//target temp
+	
+	var target_temp =parseInt(response.stemp);
+	
+	if(response.mode === "0" || response.mode === "1"){	
+		if(target_temp <= 18){
+			set_target_temp_arrow( 1,true	);		
+			set_target_temp_arrow(-1,false);
+		}else if( target_temp >= 31 ){
+			set_target_temp_arrow( 1,false);
+			set_target_temp_arrow(-1,true	);
+		}else{
+			set_target_temp_arrow( 1,true);
+			set_target_temp_arrow(-1,true	);	
+		}
+	}else if(response.mode === "3"){
+		if(target_temp <= 18){
+			set_target_temp_arrow( 1,true	);		
+			set_target_temp_arrow(-1,false);
+		}else if( target_temp >= 33 ){
+			set_target_temp_arrow( 1,false);
+			set_target_temp_arrow(-1,true	);
+		}else{
+			set_target_temp_arrow( 1,true);
+			set_target_temp_arrow(-1,true	);	
+		}
+	}else if(response.mode === "4"){
+		if(target_temp <= 10){
+			set_target_temp_arrow( 1,true	);		
+			set_target_temp_arrow(-1,false);
+		}else if( target_temp >= 31 ){
+			set_target_temp_arrow( 1,false);
+			set_target_temp_arrow(-1,true	);
+		}else{
+			set_target_temp_arrow( 1,true);
+			set_target_temp_arrow(-1,true	);	
+		}
+	}else{
+		set_target_temp_arrow( 1,true);
+		set_target_temp_arrow(-1,true	);
+	}
+	
+	set_target_temp(target_temp);
+	
+	
 	set_power(parseInt(response.pow));
 	set_mode(parseInt(response.mode));
 	var f_mode = response.f_rate;
@@ -143,6 +188,7 @@ function minimize_opt(opt){
 
 
 function mode_onclick(num){
+	if(!control_response) return;
 	var temp = minimize_opt(control_response);
 	temp["mode"] = num;
 	temp["f_rate"] = control_response["dfr"+num];
@@ -158,6 +204,7 @@ function mode_onclick(num){
 }
 
 function power_onclick(){
+	if(!control_response) return;
 	var temp = minimize_opt(control_response);
 	temp.pow = ((temp.pow == "0") ? 1 : 0);
 	send_control(temp);
@@ -165,6 +212,7 @@ function power_onclick(){
 }
 
 function fan_onclick(level){
+	if(!control_response) return;
 	var temp = minimize_opt(control_response);
 	temp.f_rate = level;
 	send_control(temp);
@@ -172,12 +220,21 @@ function fan_onclick(level){
 }
 
 function wing_onclick(num){
+	if(!control_response) return;
 	var temp = minimize_opt(control_response);
 	if(num == control_response.f_dir){
 		temp.f_dir = 0;
 	}else{
 		temp.f_dir = num;
 	}
+	send_control(temp);
+	update();
+}
+
+function temp_onclick(inc){
+	if(!control_response) return;
+	var temp = minimize_opt(control_response);
+	temp.stemp = (parseInt(control_response.stemp) + inc).toString();
 	send_control(temp);
 	update();
 }
@@ -256,6 +313,19 @@ function show_target_temp(boolean){
 	}else{
 		tt_col.classList.add("sr-only");
 	}
+}
+
+function set_target_temp_arrow(inc,boolean){
+	var arrow_id;
+	if(inc == 1) arrow_id = "target_temp_up";
+	else if (inc == -1) arrow_id = "target_temp_down";
+	else console.log("arrow inc not recognized");
+	
+	var arrow_node = document.getElementById(arrow_id);
+	
+	if(boolean)	arrow_node.classList.remove("disabled");
+	else arrow_node.classList.add("disabled");
+	
 }
 
 function set_fan(f_mode){				

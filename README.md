@@ -84,6 +84,15 @@ param name : **stemp**
 
 description: represents the target temperature
 
+general accepted range 10-41
+
+mode  | accepted range
+:----:|---------------
+AUTO  | 18-31
+HOT   | 10-31
+COLD  | 18-33
+
+
 device memorize last target temp state for each mode under dft* (dft1,dft2...) parameters. You can't set directly these.
 
 ####Fan rate
