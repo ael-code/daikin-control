@@ -337,19 +337,19 @@ function set_fan(f_mode){
 			document.getElementById("fan_eco").className="btn btn-info fan-btn";
 			break;
 		case 3:
-			document.getElementById("fan_lvl_img").src="media/level_1.png";
+			set_fan_img(1);
 			break;
 		case 4:
-			document.getElementById("fan_lvl_img").src="media/level_2.png";
+			set_fan_img(2);
 			break;
 		case 5:
-			document.getElementById("fan_lvl_img").src="media/level_3.png";
+			set_fan_img(3);
 			break;
 		case 6:
-			document.getElementById("fan_lvl_img").src="media/level_4.png";
+			set_fan_img(4);
 			break;
 		case 7:
-			document.getElementById("fan_lvl_img").src="media/level_5.png";
+			set_fan_img(5);
 			break;
 		
 		default:
@@ -357,12 +357,25 @@ function set_fan(f_mode){
 	}
 }
 
-function reset_fan(){
-	var fan_list= document.getElementsByClassName("btn-info fan-btn");
-	for(var i=0; i<fan_list.length; ++i){
-		fan_list[i].className="btn btn-default fan-btn";
+function set_fan_img(num){
+	var temp;
+	for(var i=1; i<6; ++i){
+		temp = document.getElementById("fan_lvl_" + i.toString());
+		if(i <= num){
+			temp.src="media/level_"+i.toString()+"_on.svg";
+		}else{
+			temp.src="media/level_"+i.toString()+"_off.svg";
+		}
 	}
-	document.getElementById("fan_lvl_img").src="media/level_0.png";
+}
+
+function reset_fan(){
+	var fan_list= document.getElementsByClassName("fan-btn");
+	for(var i=0; i<fan_list.length; ++i){
+		fan_list[i].classList.remove("btn-info");
+		fan_list[i].classList.add("btn-default");
+	}
+	set_fan_img(0);
 }
 
 function reset_wing(){
