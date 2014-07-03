@@ -45,7 +45,7 @@
 		  		
 		  		<!-- ON/OFF -->
 		  		<div class="col-sm-offset-10 col-sm-2 pull-right">
-		  			<i class="fa fa-power-off" style="font-size:1.6em;color:black;"></i><b style="font-size:1.5em;" id="power"> OFF</b>
+		  			<a class="btn btn-default" onclick='power_onclick();'><i class="fa fa-power-off" style="font-size:1.6em;color:black;"></i><b style="font-size:1.5em;" id="power"> OFF</b></a>
 		  		</div>
 	  		
 	  		</div>
@@ -56,11 +56,11 @@
 	   			<!-- Mode -->
 					<h4>Mode</h4>
 					<div class="btn-group">
-						<a class="btn btn-default mode-btn" id="mode_cooling"><i class="fa fa-asterisk fa-2x"></i></a>
-						<a class="btn btn-default mode-btn" id="mode_dehum"><i class="fa fa-tint fa-2x"></i></a>
-						<a class="btn btn-default mode-btn" id="mode_heating"><i class="fa fa-sun-o fa-2x"></i></a>
-						<a class="btn btn-default mode-btn" id="mode_fan"><i class="fa fa-retweet fa-2x"></i></a>
-						<a class="btn btn-default mode-btn" id="mode_auto"><i class="fa fa-font fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_cooling" onclick='mode_onclick("3");'><i class="fa fa-asterisk fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_dehum" 	onclick='mode_onclick("2");'><i class="fa fa-tint fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_heating" onclick='mode_onclick("4");'><i class="fa fa-sun-o fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_fan" 		onclick='mode_onclick("6");'><i class="fa fa-retweet fa-2x"></i></a>
+						<a class="btn btn-default mode-btn" id="mode_auto" 	onclick='mode_onclick("1");'><i class="fa fa-font fa-2x"></i></a>
 					</div>
 					
 		  		</div>
@@ -69,9 +69,13 @@
 		  			<!-- Fan -->
 					<h4>Fan</h4>
 					<div class="btn-group">
-						<a class="btn btn-default fan-btn" id="fan_auto"><i class="fa fa-font fa-2x"></i></a>
-						<a class="btn btn-default fan-btn" id="fan_eco"><i class="fa fa-leaf fa-2x"></i></a>
-						<a class="btn btn-default fan-btn" id="fan_lvl"><img src="media/level_0.png" height="29px" id="fan_lvl_img"></a>
+						<a class="btn btn-default fan-btn" id="fan_auto" 	onclick='fan_onclick("A");'><i class="fa fa-font fa-2x"></i></a>
+						<a class="btn btn-default fan-btn" id="fan_eco" 	onclick='fan_onclick("B");'><i class="fa fa-leaf fa-2x"></i></a>
+						<a class="btn btn-default" onclick='fan_onclick("3");'><img src="media/level_1_off.svg" height="29px" id="fan_lvl_1"></a>
+						<a class="btn btn-default" onclick='fan_onclick("4");'><img src="media/level_2_off.svg" height="29px" id="fan_lvl_2"></a>
+						<a class="btn btn-default" onclick='fan_onclick("5");'><img src="media/level_3_off.svg" height="29px" id="fan_lvl_3"></a>
+						<a class="btn btn-default" onclick='fan_onclick("6");'><img src="media/level_4_off.svg" height="29px" id="fan_lvl_4"></a>
+						<a class="btn btn-default" onclick='fan_onclick("7");'><img src="media/level_5_off.svg" height="29px" id="fan_lvl_5"></a>
 					</div>
 		  			
 		  		</div>
@@ -80,9 +84,9 @@
 		  			<!-- Wings Direction -->
 					<h4>Wings Direction</h4>
 					<div class="btn-group" >
-						<a class="btn btn-default wing-btn" id="wing_v"><i class="fa fa-arrows-v fa-2x"></i></a>
-						<a class="btn btn-default wing-btn" id="wing_h"><i class="fa fa-arrows-h fa-2x"></i></a>
-						<a class="btn btn-default wing-btn"	id="wing_b"><i class="fa fa-arrows fa-2x"></i></a>
+						<a class="btn btn-default wing-btn" id="wing_v" onclick='wing_onclick("1");'><i class="fa fa-arrows-v fa-2x"></i></a>
+						<a class="btn btn-default wing-btn" id="wing_h" onclick='wing_onclick("2");'><i class="fa fa-arrows-h fa-2x"></i></a>
+						<a class="btn btn-default wing-btn"	id="wing_b" onclick='wing_onclick("3");'><i class="fa fa-arrows fa-2x"></i></a>
 					</div>
 				
 				</div>
@@ -94,22 +98,29 @@
 		  			<!-- Wings Direction -->
 					<h4>Wings Direction</h4>
 					<div class="btn-group" >
-						<a class="btn btn-default wing-btn" id="wing_v"><i class="fa fa-arrows-v fa-2x"></i></a>
-						<a class="btn btn-default wing-btn" id="wing_h"><i class="fa fa-arrows-h fa-2x"></i></a>
-						<a class="btn btn-default wing-btn"	id="wing_b"><i class="fa fa-arrows fa-2x"></i></a>
+						<a class="btn btn-default wing-btn" id="wing_v" onclick='wing_onclick("1");'><i class="fa fa-arrows-v fa-2x"></i></a>
+						<a class="btn btn-default wing-btn" id="wing_h" onclick='wing_onclick("2");'><i class="fa fa-arrows-h fa-2x"></i></a>
+						<a class="btn btn-default wing-btn"	id="wing_b" onclick='wing_onclick("3");'><i class="fa fa-arrows fa-2x"></i></a>
 					</div>		  		
 				
 				</div>
 			</div>	  	
 		  	<br>
 		  	<div class="row">
-		  		<div class="col-md-4 col-sm-6">
+		  		<div class="col-md-4 col-sm-6" id="target_temp_col">
 		  			
 		  			<!--Target temperature-->
 					<h4>Target temperature</h4>
 					<div class="btn-group" >
-						<a class="btn btn-default" onclick="target_temp_onclick();" style="font-size:1.8em;"><b id="target_temp"> - C</b></a>
+						<a class="btn btn-default" style="font-size:2.2em;padding-top:12px;padding-bottom:12px;"><b id="target_temp"> ~ C</b></a>
 					</div>
+					
+					<div class="btn-group-vertical">
+						<a class="btn btn-default wing-btn" id="target_temp_up" onclick='temp_onclick(1);' style="font-size:1.7em;padding-top:0px;padding-bottom:0px;"><i class="fa fa-chevron-up"></i></a>
+						<a class="btn btn-default wing-btn"	id="target_temp_down" onclick='temp_onclick(-1);' style="font-size:1.7em;padding-top:0px;padding-bottom:0px;"><i class="fa fa-chevron-down"></i></a>
+					</div>
+					
+
 		  			
 		  		</div>
 		  		<div class="col-md-4 col-sm-6">
