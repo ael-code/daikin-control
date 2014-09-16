@@ -1,4 +1,4 @@
-daikin-control
+Daikin-Control
 ==============
 
 ![Web Gui Preview](https://raw.githubusercontent.com/ael-code/daikin-control/master/web_gui.png)
@@ -18,7 +18,19 @@ This project aims to provide 2 main things:
 - **unoffcial documentation** of Daikin API needed to control the air conditioner
 - **web interface** to manage air conditioner settings
 
->Throughout this document is to be considered valid for the Daikin Emura FTXG-L with software version 1.4.3
+
+##Tested Hardware
+
+Throughout this document is to be considered valid for the following hardware configuration
+
+```
+ModelName:          Daikin Emura FTXG-L
+ModelID:            FTXG35LV1BW
+WifiControllerID:   BRP069A41 4P358711-2C
+Software version:   1.4.3
+```
+
+Please contact me if you try new configurations.
 
 ##API System
 
