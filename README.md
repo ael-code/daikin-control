@@ -63,6 +63,7 @@ Uri                | GET | POST | desc
 /common/set_notify  | | X | ?
 /common/set_regioncode | | X | ?
 /common/set_led | | X | ?
+/common/reboot | |  | reboot the AP
 
 ##Parameters
 
