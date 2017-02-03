@@ -151,7 +151,7 @@ device memorize last humidity state for each mode under dh* (dh1,dh2...) paramet
 ------------------------------
 ### Minimal parameters set
 
-The `/common/set_control_info` has some mandatory parameters, it means that you need to include them in all the request to this endpoint even if you are not interested in changing that specific value.
+The `/common/set_control_info` has some mandatory parameters, it means that you need to include them in all the requests to this endpoint even if you are not interested in changing those specific values.
 
 These are the mandatory parameters:
 - `pow`
