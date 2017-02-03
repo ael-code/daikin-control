@@ -149,21 +149,32 @@ Daikin Emura FTXG-L does not support humidity related functionality.
 device memorize last humidity state for each mode under dh* (dh1,dh2...) parameters. You can't set directly these.
 
 ------------------------------
+### Minimal parameters set
 
-Posting to set_control_info you can omit these param:
-- adv
-- dt*
-- dh*
-- dfr*
-- dfd*
-- b_mode
-- b_stemp
-- b_shum
-- b_f_rate
-- b_f_dir
-- alert
+The `/common/set_control_info` has some mandatory parameters, it means that you need to include them in all the request to this endpoint even if you are not interested in changing that specific value.
 
-minimal request example: pow=1&mode=1&stemp=26&shum=0&f_rate=B&f_dir=3
+These are the mandatory parameters:
+- `pow`
+- `mode`
+- `stemp`
+- `shum`
+- `f_rate`
+- `f_dir`
+
+While these are the ones that can be omitted:
+- `adv`
+- `dt*`
+- `dh*`
+- `dfr*`
+- `dfd*`
+- `b_mode`
+- `b_stemp`
+- `b_shum`
+- `b_f_rate`
+- `b_f_dir`
+- `alert`
+
+minimal request example: `pow=1&mode=1&stemp=26&shum=0&f_rate=B&f_dir=3`
 
 ###`/common/set_led`
 ####Led
