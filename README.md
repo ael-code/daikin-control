@@ -67,7 +67,7 @@ Uri                | GET | POST | desc
 
 ##Parameters
 
-###"/common/set_control_info"
+###`/common/set_control_info`
 
 ####Power
 param name :  **pow**
@@ -165,7 +165,7 @@ Posting to set_control_info you can omit these param:
 
 minimal request example: pow=1&mode=1&stemp=26&shum=0&f_rate=B&f_dir=3
 
-###"/common/set_led"
+###`/common/set_led`
 ####Led
 It seems that this settings doesn't actually change led.
 
