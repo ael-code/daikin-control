@@ -188,13 +188,14 @@ value | desc
   0   | ?
   1   | ?
 
+
 ##Unsupported settings
 This list show which hardware functionality are not supported by API
 
 - led brightness switch
 
 ##Useful resource
-- http://daikinsmartdbt.jp/
+- http://daikinsmartdbt.jp/ the site has been shut down but you can still have a look at the [cached page](https://github.com/ael-code/daikin-control/blob/readme_plus/daikinsmartdbt.htm)
 
 
 ##Control Info Examples
