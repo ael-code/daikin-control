@@ -194,6 +194,12 @@ This list show which hardware functionality are not supported by API
 
 - led brightness switch
 
+
+## Libraries
+- [daikin-aricon-pylib](https://github.com/ael-code/daikin-aricon-pylib): Python library for managing Daikin air conditioners
+- [jdaikin](https://bitbucket.org/JonathanGiles/jdaikin): Java-based API to interact with Daikin units
+
+
 ##Useful resource
 - http://daikinsmartdbt.jp/ the site has been shut down but you can still have a look at the [cached page](https://github.com/ael-code/daikin-control/blob/readme_plus/daikinsmartdbt.htm)
 
