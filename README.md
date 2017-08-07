@@ -29,6 +29,13 @@ ModelID:            FTXG35LV1BW
 WifiControllerID:   BRP069A41 4P358711-2C
 Software version:   1.4.3
 ```
+```
+ModelName:          Daikin Emura FVXS-F
+ModelID:            FVXS35FV1B
+WifiControllerID:   BRP069A42
+Software version:   2.6.0
+```
+
 
 Please contact me if you try new configurations.
 
@@ -45,15 +52,15 @@ Uri                | GET | POST | desc
 /common/set_remote_method | | X | Set information on the polling system (reduce remote time update ??)
 /aircon/get_model_info | X | | Provides model informarion
 /aircon/get_control_info | X | | Main Uri to request all current status parameters
-/aircon/set_control_info | | X | Main Uri to set status parameters ( control almost all)
-/aircon/get_sensor_info | X | | Provides information on temperatures and sensors
+/aircon/set_control_info | X | X | Main Uri to set status parameters (control almost all)
+/aircon/get_sensor_info | X | | Provides information on sensors (temperatures, humidity, power consumption)
 /aircon/get_timer  | X | | ?
 /aircon/set_timer  | | X | ?
 /aircon/get_price  | X | | ?
 /aircon/set_price  | | X | ?
 /aircon/get_target | X | | ?
 /aircon/set_target | | X | ?
-/aircon/get_week_power| X | | Provides weekly runtime information
+/aircon/get_week_power| X | | Provides weekly and today runtime information (in mn)
 /aircon/get_year_power| X | | Provides yearly runtime information
 /aircon/get_program | X | | ?
 /aircon/set_program | | X | ?
@@ -113,6 +120,8 @@ param name : **f_rate**
 
 description: represents the fan rate mode
 
+Daikin Emura FVXS does not support silence (=B) value for fan rate mode functionality.
+
 value | desc
 :----:|-----
 A     | auto
@@ -144,7 +153,7 @@ param name : **shum**
 
 description: represents the target humidity
 
-Daikin Emura FTXG-L does not support humidity related functionality.
+Daikin Emura FTXG-L and FVXS does not support humidity related functionality.
 
 device memorize last humidity state for each mode under dh* (dh1,dh2...) parameters. You can't set directly these.
 
