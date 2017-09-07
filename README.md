@@ -21,7 +21,9 @@ This project aims to provide 2 main things:
 
 ## Tested Hardware
 
-Throughout this document is to be considered valid for the following hardware configuration
+The API described by this document have been tested and seems to be working with firmware version from `1.4.3` to `3.3.1`.
+
+The following hardware configurations have been used for testing:
 
 ```
 ModelName:          Daikin Emura FTXG-L
@@ -36,8 +38,8 @@ WifiControllerID:   BRP069A42
 Software version:   2.6.0
 ```
 
+If you try new hardware configurations or new firmware versions, please contact me.
 
-Please contact me if you try new configurations.
 
 ## API System
 
