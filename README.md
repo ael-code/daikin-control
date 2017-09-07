@@ -19,7 +19,7 @@ This project aims to provide 2 main things:
 - **web interface** to manage air conditioner settings
 
 
-##Tested Hardware
+## Tested Hardware
 
 Throughout this document is to be considered valid for the following hardware configuration
 
@@ -39,7 +39,7 @@ Software version:   2.6.0
 
 Please contact me if you try new configurations.
 
-##API System
+## API System
 
 Daikin original API use REST.
 
@@ -72,11 +72,11 @@ Uri                | GET | POST | desc
 /common/set_led | | X | ?
 /common/reboot | X |  | reboot the AP
 
-##Parameters
+## Parameters
 
-###`/aircon/set_control_info`
+### `/aircon/set_control_info`
 
-####Power
+#### Power
 param name :  **pow**
 
 description: represents the power state of the device
@@ -86,7 +86,7 @@ value | desc
   0   | OFF
   1   | ON
 
-####Mode
+#### Mode
 param name :  **mode**
 
 description: represents the operating mode
@@ -99,7 +99,7 @@ value | desc
   6   | FAN
   0-1-7   | AUTO
 
-####Temp
+#### Temp
 param name : **stemp**
 
 description: represents the target temperature
@@ -115,7 +115,7 @@ COLD  | 18-33
 
 device memorize last target temp state for each mode under dft* (dft1,dft2...) parameters. You can't set directly these.
 
-####Fan rate
+#### Fan rate
 param name : **f_rate**
 
 description: represents the fan rate mode
@@ -134,7 +134,7 @@ B     | silence
 
 device memorize last fan rate state for each mode under dfr* (dfr1,dfr2...) parameters. You can't set directly these.
 
-####Fan direction
+#### Fan direction
 param name : **f_dir**
 
 description: represents the fan direction
@@ -148,7 +148,7 @@ value | desc
 
 device memorize last fan rate state for each mode under dfd* (dfd1,dfd2...) parameters. You can't set directly these.
 
-####Humidity
+#### Humidity
 param name : **shum**
 
 description: represents the target humidity
@@ -185,8 +185,8 @@ While these are the ones that can be omitted:
 
 minimal request example: `pow=1&mode=1&stemp=26&shum=0&f_rate=B&f_dir=3`
 
-###`/common/set_led`
-####Led
+### `/common/set_led`
+#### Led
 It seems that this settings doesn't actually change led.
 
 param name: **led**
@@ -198,7 +198,7 @@ value | desc
   1   | ?
 
 
-##Unsupported settings
+## Unsupported settings
 This list show which hardware functionality are not supported by API
 
 - led brightness switch
@@ -209,11 +209,11 @@ This list show which hardware functionality are not supported by API
 - [jdaikin](https://bitbucket.org/JonathanGiles/jdaikin): Java-based API to interact with Daikin units
 
 
-##Useful resource
+## Useful resource
 - http://daikinsmartdbt.jp/ the site has been shut down but you can still have a look at the [cached page](https://github.com/ael-code/daikin-control/blob/readme_plus/daikinsmartdbt.htm)
 
 
-##Control Info Examples
+## Control Info Examples
 
 Switched Off
 ```
