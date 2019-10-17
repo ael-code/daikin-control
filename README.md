@@ -37,6 +37,12 @@ ModelID:            FVXS35FV1B
 WifiControllerID:   BRP069A42
 Software version:   2.6.0
 ```
+```
+ModelName:          Daikin Caldo XRH30
+ModelID:            FTXTM302V1B
+WifiControllerID:   BRP069B41
+Software version:   1.2.51
+```
 
 If you try new hardware configurations or new firmware versions, please contact me.
 
